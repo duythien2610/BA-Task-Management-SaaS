@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="660" height="420" viewBox="0 0 660 420" xmlns="http://www.w3.org/2000/svg" font-family="Calibri,Arial,sans-serif">
+  <rect x="0" y="0" width="660" height="420" fill="#fff" stroke="#000" stroke-width="1.5"/>
+  <!-- TaskFlow system box -->
+  <rect x="220" y="145" width="220" height="110" rx="4" fill="#222" stroke="#000" stroke-width="2"/>
+  <text x="330" y="192" font-size="13" fill="#fff" font-weight="bold" text-anchor="middle">TaskFlow</text>
+  <text x="330" y="210" font-size="10" fill="#ddd" text-anchor="middle">Work Management Platform</text>
+  <text x="330" y="226" font-size="9" fill="#aaa" text-anchor="middle">Q2 Scope Boundary</text>
+
+  <!-- LEFT: Users -->
+  <!-- Agency Director -->
+  <rect x="20" y="40" width="130" height="42" rx="3" fill="#444" stroke="#000"/>
+  <text x="85" y="59" font-size="10" fill="#fff" text-anchor="middle" font-weight="bold">Agency Director</text>
+  <text x="85" y="74" font-size="9" fill="#ccc" text-anchor="middle">Owner / Admin role</text>
+  <line x1="150" y1="61" x2="220" y2="175" stroke="#000" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="175" y="110" font-size="8" fill="#333">view billing, export</text>
+
+  <!-- Project Manager -->
+  <rect x="20" y="145" width="130" height="42" rx="3" fill="#444" stroke="#000"/>
+  <text x="85" y="164" font-size="10" fill="#fff" text-anchor="middle" font-weight="bold">Project Manager</text>
+  <text x="85" y="179" font-size="9" fill="#ccc" text-anchor="middle">PM role</text>
+  <line x1="150" y1="166" x2="220" y2="200" stroke="#000" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="170" y="180" font-size="8" fill="#333">bulk action, notify</text>
+
+  <!-- Team Member -->
+  <rect x="20" y="250" width="130" height="42" rx="3" fill="#444" stroke="#000"/>
+  <text x="85" y="269" font-size="10" fill="#fff" text-anchor="middle" font-weight="bold">Team Member</text>
+  <text x="85" y="284" font-size="9" fill="#ccc" text-anchor="middle">Member role</text>
+  <line x1="150" y1="271" x2="220" y2="225" stroke="#000" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="168" y="258" font-size="8" fill="#333">log time, receive alerts</text>
+
+  <!-- Client read-only -->
+  <rect x="20" y="350" width="130" height="42" rx="3" fill="#888" stroke="#000"/>
+  <text x="85" y="369" font-size="10" fill="#fff" text-anchor="middle" font-weight="bold">Client</text>
+  <text x="85" y="384" font-size="9" fill="#eee" text-anchor="middle">Read-only (receives export)</text>
+  <line x1="150" y1="371" x2="220" y2="245" stroke="#888" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#arrgray)"/>
+  <text x="168" y="330" font-size="8" fill="#888">receives PDF/Excel file</text>
+
+  <!-- RIGHT: External Systems -->
+  <!-- Email SMTP -->
+  <rect x="510" y="40" width="130" height="42" rx="3" fill="#555" stroke="#000"/>
+  <text x="575" y="59" font-size="10" fill="#fff" text-anchor="middle" font-weight="bold">Email / SMTP</text>
+  <text x="575" y="74" font-size="9" fill="#ccc" text-anchor="middle">Notification delivery (Q2)</text>
+  <line x1="440" y1="175" x2="510" y2="61" stroke="#000" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="478" y="108" font-size="8" fill="#333">sends alerts</text>
+
+  <!-- Excel / PDF viewer -->
+  <rect x="510" y="145" width="130" height="42" rx="3" fill="#555" stroke="#000"/>
+  <text x="575" y="164" font-size="10" fill="#fff" text-anchor="middle" font-weight="bold">Excel / PDF Viewer</text>
+  <text x="575" y="179" font-size="9" fill="#ccc" text-anchor="middle">Receives exported files (Q2)</text>
+  <line x1="440" y1="200" x2="510" y2="166" stroke="#000" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="470" y="188" font-size="8" fill="#333">export file</text>
+
+  <!-- Toggl (to be replaced) -->
+  <rect x="510" y="250" width="130" height="42" rx="3" fill="#aaa" stroke="#888"/>
+  <text x="575" y="266" font-size="10" fill="#fff" text-anchor="middle" font-weight="bold">Toggl</text>
+  <text x="575" y="281" font-size="9" fill="#eee" text-anchor="middle">To be replaced by FT-002</text>
+  <line x1="440" y1="220" x2="510" y2="260" stroke="#aaa" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="470" y="248" font-size="8" fill="#888">eliminated in Q2</text>
+
+  <!-- Q3 out-of-scope: Mobile App -->
+  <rect x="510" y="340" width="130" height="42" rx="3" fill="#ddd" stroke="#999" stroke-dasharray="5,3"/>
+  <text x="575" y="358" font-size="10" fill="#555" text-anchor="middle" font-weight="bold">Mobile App</text>
+  <text x="575" y="373" font-size="9" fill="#888" text-anchor="middle">[Q3 — Out of Scope]</text>
+  <line x1="440" y1="240" x2="510" y2="355" stroke="#bbb" stroke-width="1" stroke-dasharray="5,3"/>
+
+  <!-- Legend -->
+  <rect x="20" y="390" width="12" height="12" fill="#333"/>
+  <text x="37" y="401" font-size="8" fill="#333">In-scope system actor</text>
+  <rect x="150" y="390" width="12" height="12" fill="#ddd" stroke="#999" stroke-dasharray="3,2"/>
+  <text x="167" y="401" font-size="8" fill="#888">Out of scope (Q3)</text>
+  <line x1="290" y1="396" x2="310" y2="396" stroke="#bbb" stroke-dasharray="3,2"/>
+  <text x="315" y="401" font-size="8" fill="#888">Deferred connection</text>
+
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#000"/>
+    </marker>
+    <marker id="arrgray" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#888"/>
+    </marker>
+  </defs>
+</svg>
