@@ -1,36 +1,35 @@
-# TaskFlow BA Documentation
+# TaskFlow Business Analysis Documentation
 
-Welcome to the Business Analysis repository for **TaskFlow**, a Work Management SaaS Platform tailored for Agencies & SMEs. 
+This repository serves as the central hub for the business analysis, system design, and technical requirement documents of **TaskFlow**, a Work Management SaaS Platform designed for Agencies and SMEs.
 
-This repository serves as the central hub for all business analysis, system design, and technical requirement documents that shape the product's scope, architecture, and development roadmap (with a current focus on the Q2/2025 MVP).
+These documents establish the scope, architecture, and development roadmap of the platform, with a primary focus on the Q2/2025 Minimum Viable Product (MVP).
 
-## 🚀 Về dự án TaskFlow
+## System Capabilities
 
-TaskFlow là một nền tảng quản lý công việc (Work Management Platform) dành cho các Startup, SME và đặc biệt là các Agency. Phần mềm được thiết kế với giao diện chuẩn UI/UX, hướng tới hiệu suất (performance) và tối ưu hóa quy trình làm việc (workflow) với các chức năng chính:
+TaskFlow provides a performance-oriented workflow optimization platform with the following core functionalities:
 
-### Các tính năng cốt lõi (Core Features)
-* **Quản trị Module & Dự án (Workspace / Project Management)**: Quản lý tập trung các dự án, danh sách công việc. 
-* **Quản lý Công việc nâng cao (Advanced Task Management)**: Theo dõi tiến độ công việc với Multi-views (Kanban, List, Calendar), thao tác hàng loạt (**Bulk Actions**) giúp tự động hóa và đồng bộ các thay đổi nhanh chóng (đổi trạng thái, phân công, dời hạn deadline).
-* **Quản lý Phân quyền (Permission Module)**: Hệ thống phân quyền cấu trúc phân tầng với 5 vai trò cố định: Owner/Director, Admin, Project Manager, Member và Client (read-only). Bảo mật mạnh mẽ và tách biệt dữ liệu đa khách thuê (multi-tenant).
-* **Time Tracking & Billing Summary**: Theo dõi thời gian thực hiện từng Task, tính toán số giờ làm việc của từng Member. Tự động xuất báo cáo và chi phí (Client Billing Summary) dựa trên Hourly Rate của mỗi dự án.
-* **Hệ thống cảnh báo & Thông báo (Notification System)**: Thông báo tức thời (In-app notifications) và qua Email khi Task tới hạn (overdue), thay đổi thiết lập, hoặc có comments mới.
-* **Xuất báo cáo linh hoạt (Export Excel/PDF)**: Cung cấp 3 dạng biểu đồ báo cáo cốt lõi phục vụ riêng cho Agencies. Xuất Báo cáo tiến độ (Project Progress), Báo cáo khối lượng công việc đội ngũ (Team Workload) dưới định dạng Excel và PDF đạt chuẩn minh bạch với Client.
+* **Workspace and Project Management**: Centralized management of projects and task lists across multiple views (Kanban, List, Calendar).
+* **Advanced Task Workflows**: Capabilities including bulk actions (modify status, reassign, update due dates) to synchronize changes efficiently across multiple tasks.
+* **Permission Module**: A tiered and secure multi-tenant role-based access control (RBAC) system with five fixed roles: Owner/Director, Admin, Project Manager, Member, and Client (Read-Only).
+* **Time Tracking and Billing Summary**: Task-based time logging and automated client billing calculation based on project-specific hourly rates, specifically tailored for agency workflows.
+* **Notification System**: Immediate in-app and email alerts tailored to task events (assignments, overdue status, new comments) with granular user preference controls.
+* **Export and Reporting**: Three core export configurations (Project Progress, Task List, Team Workload) strictly formatted in Excel and PDF for professional client-shareable status reporting.
 
-## 📁 Cấu trúc thư mục (Repository Structure)
+## Repository Structure
 
-Toàn bộ các tài liệu phục vụ việc phân tích nghiệp vụ và thiết kế hệ thống được tổ chức như sau:
+The documentation and deliverables are structured as follows:
 
-* **`docs/`**: Chứa toàn bộ các tài liệu định nghĩa đặc tả chi tiết (chuẩn format PDF):
-  * **Business Case (BC)**: Tài liệu lý luận tính khả thi và lợi ích thương mại.
-  * **Business Requirements Document (BRD)**: Tài liệu yêu cầu nghiệp vụ cấp cao.
-  * **Software Requirements Specification (SRS)**: Đặc tả yêu cầu phần mềm kỹ thuật.
-  * **Scope Document**: Tài liệu quản lý phạm vi thay đổi, phạm vi MVP & các tính năng Q2.
-  * **Delivery Plan & Stakeholder Matrix**: Phân bổ nguồn lực tổng thể dự án.
-  
-* **`diagram/`**: (hoặc `diagrams/`) Chứa các mô hình phân tích trực quan hỗ trợ cả Business lẫn Dev teams:
-  * **Context Diagrams & Dependency Maps**: Sơ đồ thể hiện hệ thống tương tác và luồng nghiệp vụ.
-  * Các biểu đồ luồng quy trình (Flowcharts), Use Case, DFD (Data Flow Diagram) chuẩn format SVG.
+* **`docs/`**: Contains the final specification documents detailing requirements and scope.
+  * **Business Case**: Commercial feasibility and return on investment analysis.
+  * **Business Requirements Document (BRD)**: High-level business constraints and requirements.
+  * **Software Requirements Specification (SRS)**: Detailed functional and non-functional engineering specifications.
+  * **Scope Document**: Definition of the MVP boundaries, specifically detailing in-scope features for Q2.
+  * **Delivery Plan and Stakeholder Matrix**: Resource allocation, schedules, and communication guidelines.
 
-## 📞 Liên hệ
+* **`diagrams/`**: Contains structural diagrams and system workflows.
+  * **Context Diagrams**: Boundaries and interactions of the system with external actors.
+  * **Flowcharts and Architectures**: Procedural process modelling and dependencies formatted in standard SVG.
 
-Các điều chỉnh, đóng góp hoặc hỏi đáp về bộ spec kỹ thuật + nghiệp vụ của dự án có thể được theo dõi qua issue board hoặc trực tiếp pull request ở repository này. Liên hệ với Business Analyst phụ trách dự án để được hỗ trợ cụ thể nhất.
+## Inquiries and Change Control
+
+All change controls, updates, and clarifications regarding the system specifications and artifacts should be directed through the formal issue tracker or pull request workflow in this repository. Ensure all scope change requests conform to the processes defined in the Scope Document. For immediate matters, please contact the lead Business Analyst.
