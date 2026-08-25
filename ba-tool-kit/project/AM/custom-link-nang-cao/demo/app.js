@@ -1248,7 +1248,7 @@ function saveCustomLinkForm() {
             link.updatedAt = "Vừa xong";
         }
         showToast("Cập nhật thông tin link thành công!");
-        openDetailView(editingLinkId);
+        showListView();
     } else {
         // TẠO LINK MỚI (URL-First)
         const newSlug = "fpt" + Math.random().toString(36).substring(2, 7);
@@ -1270,7 +1270,7 @@ function saveCustomLinkForm() {
         };
         customLinks.unshift(newLink);
         showToast("Tạo link thành công!");
-        openDetailView(newLink.id);
+        showListView();
     }
 }
 
