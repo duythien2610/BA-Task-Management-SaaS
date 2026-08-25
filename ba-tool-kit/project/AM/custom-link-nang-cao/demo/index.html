@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP Affiliate Marketing - Custom Link Nâng Cao</title>
+    <!-- Google Fonts: Inter & Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Top Navigation Bar -->
+    <header class="sop-header">
+        <div class="header-left">
+            <div class="sop-logo">
+                <span class="fpt-orange">FPT</span> <span class="sop-text">SALE PLATFORM</span>
+            </div>
+            <div class="module-badge">Affiliate Marketing</div>
+        </div>
+        <div class="header-right">
+            <div class="user-status-badges">
+                <span class="status-pill green"><span class="status-indicator"></span> Đang trực tuyến</span>
+                <span class="status-pill gray">Tạm nghỉ</span>
+            </div>
+            <div class="user-profile">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80"
+                    alt="Avatar" class="avatar-sm">
+                <div class="user-info">
+                    <span class="user-name">Chí Linh</span>
+                    <span class="user-role">Chi nhánh HN01</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <div class="sop-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sop-sidebar">
+            <div class="menu-group-title">TIẾP THỊ LIÊN KẾT</div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#" class="nav-link"><svg class="nav-icon" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg> Trang chủ</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><svg class="nav-icon" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg> Hội thoại</a></li>
+                <li class="nav-item active"><a href="#" class="nav-link" onclick="showListView()"><svg class="nav-icon"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                        </svg> Cá nhân</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><svg class="nav-icon" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg> Quản lý bài viết</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><svg class="nav-icon" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg> Quản lý khách hàng</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><svg class="nav-icon" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="20" x2="18" y2="10"></line>
+                            <line x1="12" y1="20" x2="12" y2="4"></line>
+                            <line x1="6" y1="20" x2="6" y2="14"></line>
+                        </svg> Báo cáo</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="sop-content">
+
+            <!-- VIEW 1: DANH SÁCH LINK TÔI TẠO (Chuẩn Mockup pic_01) -->
+            <section id="view-list" class="view-section active">
+                <div class="section-title-bar">
+                    <h1 class="page-title">Cá nhân</h1>
+                </div>
+
+                <!-- Secondary Tab Navigation -->
+                <div class="sub-tabs-bar">
+                    <button class="sub-tab-btn" onclick="showToast('Chức năng Danh sách chiến dịch')">Danh sách chiến
+                        dịch</button>
+                    <button class="sub-tab-btn" onclick="showToast('Chức năng Báo cáo')">Báo cáo</button>
+                    <button class="sub-tab-btn active" onclick="showListView()">Link tôi tạo</button>
+                </div>
+
+                <!-- Filter & Search Toolbar chuẩn pic_01 -->
+                <div class="toolbar-pic01">
+                    <div class="toolbar-left">
+                        <button id="btn-toggle-filter" class="btn btn-filter" onclick="toggleAdvancedFilter()">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                            </svg>
+                            Bộ lọc
+                            <span id="filter-active-dot" class="filter-dot-active" style="display: none;"></span>
+                        </button>
+                        <div class="search-box-pic01">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            <input type="text" id="search-input" placeholder="Tìm kiếm theo tên chiến dịch..." oninput="handleSearch()">
+                            <button id="search-clear-btn" class="btn-clear-search" style="display: none;" onclick="clearSearchInput()" title="Xóa từ khóa">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="toolbar-right">
+                        <div class="sort-control">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <polyline points="19 12 12 19 5 12"></polyline>
+                            </svg>
+                            <span class="sort-label">Sắp xếp:</span>
+                            <select id="sort-select" class="sort-dropdown" onchange="handleSortChange()">
+                                <option value="newest">Mới nhất</option>
+                                <option value="oldest">Cũ nhất</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary" onclick="openCreateForm()">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                            Tạo link
+                        </button>
+                        <button class="btn btn-icon-config" title="Cấu hình hiển thị"
+                            onclick="showToast('Tùy chỉnh cột hiển thị')">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <line x1="4" y1="21" x2="4" y2="14"></line>
+                                <line x1="4" y1="10" x2="4" y2="3"></line>
+                                <line x1="12" y1="21" x2="12" y2="12"></line>
+                                <line x1="12" y1="8" x2="12" y2="3"></line>
+                                <line x1="20" y1="21" x2="20" y2="16"></line>
+                                <line x1="20" y1="12" x2="20" y2="3"></line>
+                                <line x1="1" y1="14" x2="7" y2="14"></line>
+                                <line x1="9" y1="8" x2="15" y2="8"></line>
+                                <line x1="17" y1="16" x2="23" y2="16"></line>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- KHỐI BỘ LỌC NÂNG CAO (USE CASE 1.1 TRONG EXCEL) -->
+                <div id="advanced-filter-panel" class="advanced-filter-panel" style="display: none;">
+                    <div class="filter-panel-inner">
+                        <div class="filter-field-col">
+                            <label class="filter-col-label">Khoảng thời gian tạo link</label>
+                            <select id="filter-date-preset" class="form-control filter-select">
+                                <option value="all">Tất cả thời gian</option>
+                                <option value="today">Hôm nay</option>
+                                <option value="last7days">7 ngày qua</option>
+                                <option value="last30days">30 ngày qua</option>
+                            </select>
+                        </div>
+                        <div class="filter-field-col">
+                            <label class="filter-col-label">Loại link tiếp thị</label>
+                            <div class="filter-checkbox-group">
+                                <label class="filter-checkbox-item">
+                                    <input type="checkbox" id="filter-type-url" value="url" checked>
+                                    <span>URL đích (Chưa tùy biến SP)</span>
+                                </label>
+                                <label class="filter-checkbox-item">
+                                    <input type="checkbox" id="filter-type-custom" value="custom" checked>
+                                    <span>Sản phẩm dịch vụ (Đã tùy biến)</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="filter-actions-col">
+                            <button class="btn btn-secondary btn-sm" onclick="resetAdvancedFilter()">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                                    <path d="M3 3v5h5"></path>
+                                </svg>
+                                Reset
+                            </button>
+                            <button class="btn btn-primary btn-sm" onclick="applyAdvancedFilter()">
+                                Áp dụng lọc
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Table Card chuẩn pic_01 -->
+                <div class="table-card">
+                    <table class="sop-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 50px;">STT</th>
+                                <th>Tên link</th>
+                                <th>Link/Sản phẩm dịch vụ</th>
+                                <th>Ngày tạo</th>
+                                <th>Ngày sửa</th>
+                                <th class="text-right" style="width: 120px;">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="links-table-body">
+                            <!-- Rendered dynamically by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination Footer chuẩn pic_01 (Phân trang động Use Case 1.4) -->
+                <div class="pagination-footer">
+                    <div class="pagination-info" id="pagination-info">
+                        Hiển thị 1 - 5 / 5 bản ghi
+                    </div>
+                    <div class="pagination-pages" id="pagination-pages">
+                        <!-- Dynamic buttons rendered by JS -->
+                    </div>
+                    <div class="page-size-selector">
+                        <select id="select-page-size" onchange="handlePageSizeChange(this.value)">
+                            <option value="10">10 kết quả/trang</option>
+                            <option value="20">20 kết quả/trang</option>
+                            <option value="50">50 kết quả/trang</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VIEW 2: FORM TẠO & SỬA LINK (2-TAB: URL Đích | Chọn từ danh sách) -->
+            <section id="view-form" class="view-section">
+                <div class="form-back-header" onclick="showListView()">
+                    <span class="back-arrow">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <line x1="19" y1="12" x2="5" y2="12"></line>
+                            <polyline points="12 19 5 12 12 5"></polyline>
+                        </svg>
+                    </span>
+                    <h2 id="form-main-title" class="form-page-title">Tạo link theo URL đích</h2>
+                </div>
+
+                <div class="form-grid-layout">
+                    <!-- Left Column: Form Fields -->
+                    <div class="form-left-col">
+
+                        <!-- THÔNG TIN CƠ BẢN -->
+                        <div class="card form-block-card">
+                            <h3 class="block-title">Thông tin cơ bản</h3>
+                            <div class="form-group">
+                                <label class="form-label required">Tên link</label>
+                                <input type="text" id="input-link-title" class="form-control"
+                                    placeholder="Ví dụ: Chiến dịch Internet Chung cư Ngoại Giao Đoàn" maxlength="100"
+                                    oninput="handleFormValidation()">
+                                <span id="link-title-error" class="form-error-inline" style="display:none; color:#ef4444; font-size:12px; margin-top:4px; font-weight:500;"></span>
+                            </div>
+                            <div class="form-group mb-0">
+                                <label class="form-label">Ảnh đại diện (Avatar)</label>
+                                <div class="avatar-field-row" id="avatar-display-row">
+                                    <img id="input-avatar-preview"
+                                        src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=100&auto=format&fit=crop&q=80"
+                                        alt="Avatar" class="avatar-md">
+                                    <span id="input-avatar-filename" class="avatar-filename">chien-dich-fpt.jpg</span>
+                                    <button class="icon-btn-trash" title="Xóa ảnh" onclick="removeAvatar()">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <polyline points="3 6 5 6 21 6"></polyline>
+                                            <path
+                                                d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="add-image-dashed-btn" onclick="randomizeFormAvatar()">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                        <polyline points="17 8 12 3 7 8"></polyline>
+                                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                                    </svg>
+                                    Tải ảnh lên hoặc đổi ảnh mẫu
+                                </div>
+                                <span class="form-subhint">Kích thước tối thiểu 200 × 200 px, định dạng PNG, JPG hoặc
+                                    JPEG.</span>
+                            </div>
+                        </div>
+
+                        <!-- THÔNG TIN LINK: 2-TAB [URL Đích | Chọn từ danh sách] -->
+                        <div class="card form-block-card" id="form-link-config-card">
+                            <h3 class="block-title mb-0">Thông tin link</h3>
+
+                            <!-- 2-TAB BAR -->
+                            <div class="form-tab-bar">
+                                <button id="tab-btn-url" class="form-tab-btn active" onclick="switchFormTab('url')">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                                    </svg>
+                                    URL đích
+                                </button>
+                                <button id="tab-btn-products" class="form-tab-btn" onclick="switchFormTab('products')"
+                                    disabled>
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                        <line x1="8" y1="21" x2="16" y2="21"></line>
+                                        <line x1="12" y1="17" x2="12" y2="21"></line>
+                                    </svg>
+                                    Chọn từ danh sách
+                                    <span id="form-tab-badge-new" class="tab-badge-new" style="display:none;">mới</span>
+                                    <span id="form-product-count-badge" class="tab-count-badge"
+                                        style="display:none;">0/3</span>
+                                </button>
+                            </div>
+
+                            <!-- TAB CONTENT: URL ĐÍCH -->
+                            <div id="form-tab-url-content" class="form-tab-content">
+                                <div class="form-group mb-0">
+                                    <!-- CREATE MODE: editable -->
+                                    <div id="url-create-mode">
+                                        <label class="form-label required">URL đích</label>
+                                        <input type="text" id="input-target-url" class="form-control"
+                                            placeholder="https://fpt.vn/dang-ky-nang-cap-wifi7"
+                                            value="https://fpt.vn/dang-ky-nang-cap-wifi7"
+                                            oninput="handleFormValidation()">
+                                        <span id="target-url-error" class="form-error-inline" style="display:none; color:#ef4444; font-size:12px; margin-top:4px; font-weight:500;"></span>
+                                        <span id="url-lock-note" class="form-subhint">Nhập URL trang đích thuộc hệ thống
+                                            fpt.vn để làm gốc tạo link tiếp thị.</span>
+                                    </div>
+                                    <!-- EDIT MODE: read-only (URL locked after creation) -->
+                                    <div id="url-edit-mode" style="display:none;">
+                                        <label class="form-label"
+                                            style="display:flex; align-items:center; gap:6px; color:#64748b;">
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#64748b"
+                                                stroke-width="2">
+                                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                            </svg>
+                                            URL đích (Đã khóa sau khi tạo)
+                                        </label>
+                                        <div class="url-locked-box">
+                                            <span id="url-display-readonly" class="url-locked-text"></span>
+                                            <span class="url-lock-icon"
+                                                title="URL đích không thể thay đổi sau khi tạo link">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                    stroke="#94a3b8" stroke-width="2">
+                                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                        <span class="form-subhint" style="color:#94a3b8;">URL đích được khóa vĩnh viễn
+                                            sau khi tạo link. Shortlink & QR Code đã được sinh dựa trên URL này.</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- TAB CONTENT: CHỌN TỪ DANH SÁCH SP/DV -->
+                            <div id="form-tab-products-content" class="form-tab-content" style="display: none;">
+                                <!-- KHU VỰC ÁP DỤNG — LOCATION-FIRST PATTERN (Giống pic2) -->
+                                <div class="location-section-card">
+                                    <div class="location-section-header">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0284c7"
+                                            stroke-width="2">
+                                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                            <circle cx="12" cy="10" r="3"></circle>
+                                        </svg>
+                                        <span>Khu vực</span>
+                                    </div>
+                                    <div class="location-row-2col">
+                                        <div class="form-group mb-0">
+                                            <label class="form-label required">Tỉnh/Thành phố</label>
+                                            <select id="select-province" class="form-control"
+                                                onchange="handleProvinceChange()">
+                                                <option value="">-- Chọn Tỉnh/Thành phố --</option>
+                                                <option value="HN">Hà Nội</option>
+                                                <option value="HCM">TP. Hồ Chí Minh</option>
+                                                <option value="DN">Đà Nẵng</option>
+                                                <option value="HP">Hải Phòng</option>
+                                                <option value="CT">Cần Thơ</option>
+                                                <option value="BD">Bình Dương</option>
+                                                <option value="DN2">Đồng Nai</option>
+                                                <option value="AG">An Giang</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group mb-0">
+                                            <label class="form-label required">Phường/Xã</label>
+                                            <select id="select-ward" class="form-control" onchange="handleWardChange()"
+                                                disabled>
+                                                <option value="">-- Chọn Tỉnh/Thành trước --</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="custom-select-box detail-select-box">
+                                    <div id="form-select-trigger" class="select-trigger-box"
+                                        onclick="toggleFormDropdown()">
+                                        <span id="form-select-trigger-text">Chọn sản phẩm / dịch vụ</span>
+                                        <span class="dropdown-caret">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <polyline points="6 9 12 15 18 9"></polyline>
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <div id="form-select-menu" class="select-menu-box">
+                                        <div class="select-search-bar">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <circle cx="11" cy="11" r="8"></circle>
+                                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                            </svg>
+                                            <input id="form-dropdown-filter" type="text" placeholder="Tìm kiếm"
+                                                oninput="filterFormDropdown()">
+                                        </div>
+                                        <div id="form-dropdown-items" class="select-items-list"></div>
+                                    </div>
+                                </div>
+                                <div id="form-selection-hint" class="selection-limit-hint" aria-live="polite"></div>
+                                <div id="form-products-editor" class="configured-products-list"></div>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="form-actions-bottom">
+                            <button class="btn btn-secondary" onclick="showListView()">Hủy</button>
+                            <button id="btn-save-form" class="btn btn-primary btn-lg-wide"
+                                onclick="saveCustomLinkForm()">
+                                Tạo link
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Xem trước link -->
+                    <div class="form-right-col">
+                        <!-- Placeholder State: Khi tạo link mới -->
+                        <div id="form-preview-placeholder" class="card preview-sticky-card">
+                            <h3 class="block-title"
+                                style="margin-bottom: 16px; font-size: 16px; font-weight: 700; color: #1e293b;">Xem
+                                trước link</h3>
+
+                            <div class="preview-field-group" style="margin-bottom: 16px;">
+                                <label class="preview-field-lbl"
+                                    style="font-size: 13px; font-weight: 500; color: #475569; margin-bottom: 6px; display: block;">Shortlink</label>
+                                <input type="text" class="form-control" readonly
+                                    placeholder="Shortlink sẽ hiển thị tại đây sau khi tạo link"
+                                    style="background-color: #f8fafc; color: #94a3b8; border: 1px solid #e2e8f0; font-size: 13px; cursor: default;">
+                            </div>
+
+                            <div class="preview-field-group" style="margin-bottom: 16px;">
+                                <label class="preview-field-lbl"
+                                    style="font-size: 13px; font-weight: 500; color: #475569; margin-bottom: 6px; display: block;">Mã
+                                    QR</label>
+                                <div class="qr-placeholder-container">
+                                    <div class="qr-placeholder-white-card">
+                                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="#94a3b8"
+                                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M 10 18 V 12 C 10 10.895 10.895 10 12 10 H 18"></path>
+                                            <path d="M 30 10 H 36 C 37.105 10 38 10.895 38 12 V 18"></path>
+                                            <path d="M 38 30 V 36 C 38 37.105 37.105 38 36 38 H 30"></path>
+                                            <path d="M 18 38 H 12 C 10.895 38 10 37.105 10 36 V 30"></path>
+                                            <line x1="18" y1="24" x2="30" y2="24"></line>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="preview-field-group">
+                                <button class="btn btn-preview-disabled" disabled
+                                    style="width: 100%; justify-content: center; gap: 8px; background: #f1f5f9; color: #94a3b8; border: 1px solid #e2e8f0; cursor: not-allowed; padding: 10px 16px; border-radius: 6px; font-weight: 500; font-size: 13.5px;">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                        <polyline points="15 3 21 3 21 9"></polyline>
+                                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                                    </svg>
+                                    Xem trang đích
+                                </button>
+                                <p class="field-hint-italic">Mở trang preview ở tab mới. Lượt click ở trang preview
+                                    không được ghi nhận tracking.</p>
+                            </div>
+                        </div>
+
+                        <!-- Active State: Khi chỉnh sửa link -->
+                        <div id="form-preview-active" class="card preview-sticky-card" style="display: none;">
+                            <h3 class="block-title"
+                                style="margin-bottom: 16px; font-size: 16px; font-weight: 700; color: #1e293b;">Xem
+                                trước link</h3>
+
+                            <div class="preview-field-group" style="margin-bottom: 16px;">
+                                <label class="preview-field-lbl"
+                                    style="font-size: 13px; font-weight: 500; color: #475569; margin-bottom: 6px; display: block;">Shortlink</label>
+                                <div class="shortlink-copy-input-row">
+                                    <input type="text" id="form-preview-shortlink" readonly
+                                        value="https://fpt.vn/linhdcc">
+                                    <button class="btn-icon-copy" title="Sao chép" onclick="copyFormPreviewShortlink()">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="preview-field-group" style="margin-bottom: 16px;">
+                                <label class="preview-field-lbl"
+                                    style="font-size: 13px; font-weight: 500; color: #475569; margin-bottom: 6px; display: block;">Mã
+                                    QR</label>
+                                <div class="qr-center-box">
+                                    <img id="form-preview-qr"
+                                        src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://fpt.vn/linhdcc"
+                                        alt="QR Code" class="qr-preview-large">
+                                    <button class="qr-download-corner-btn" title="Tải QR" onclick="downloadQRCode()">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                            <polyline points="7 10 12 15 17 10"></polyline>
+                                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="preview-field-group">
+                                <button id="btn-form-preview-landing" class="btn btn-secondary"
+                                    style="width: 100%; justify-content: center; gap: 8px; font-size: 13.5px;"
+                                    onclick="openFormLivePreview()">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                        <polyline points="15 3 21 3 21 9"></polyline>
+                                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                                    </svg>
+                                    Xem trang đích
+                                </button>
+                                <p class="field-hint-italic">Mở trang preview ở tab mới. Lượt click ở trang preview
+                                    không được ghi nhận tracking.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VIEW 3: MÀN HÌNH CHI TIẾT LINK & BÁO CÁO KPI (CHUẨN MOCKUP PIC_04) -->
+            <section id="view-detail" class="view-section">
+                <div class="detail-header-nav">
+                    <button class="btn btn-secondary btn-sm" onclick="showListView()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <line x1="19" y1="12" x2="5" y2="12"></line>
+                            <polyline points="12 19 5 12 12 5"></polyline>
+                        </svg>
+                        Chi tiết link
+                    </button>
+                </div>
+
+                <!-- BANNER CHI TIẾT CHIẾN DỊCH CHUẨN PIC_04 -->
+                <div class="card detail-info-card-v4">
+                    <div class="detail-hero-v4">
+                        <img id="detail-avatar" src="" alt="Avatar" class="avatar-hero-v4">
+                        <div class="detail-titles-v4">
+                            <h2 id="detail-title" class="detail-link-name-v4">Tên chiến dịch</h2>
+                            <div class="detail-meta-row-v4">
+                                <span class="meta-item">Ngày tạo: <strong id="detail-created-at">08:00
+                                        20/03/2026</strong></span>
+                                <span class="meta-item">Ngày cập nhật: <strong id="detail-updated-at">Vừa
+                                        xong</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-actions-v4" style="display:flex; align-items:center; gap:8px;">
+                        <button class="btn btn-secondary btn-sm" style="display:flex; align-items:center; gap:6px; height:34px;" onclick="openDetailLivePreview()">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                            Xem trang đích
+                        </button>
+                        <button class="btn btn-edit-link-v4" onclick="openEditFormFromDetail()">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                            </svg>
+                            Chỉnh sửa
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 4 THẺ KPI HIỆU QUẢ LINK -->
+                <div class="detail-section-title-wrap">
+                    <h3 class="detail-sub-heading">Hiệu quả link</h3>
+                </div>
+                <div class="kpi-grid-v4">
+                    <div class="kpi-card-v4 border-blue">
+                        <div class="kpi-content-v4">
+                            <span class="kpi-label-v4">KHTN <span class="info-circle-icon"
+                                    title="Khách hàng tiềm năng">ⓘ</span></span>
+                            <span id="detail-kpi-leads" class="kpi-value-v4">32.384</span>
+                        </div>
+                    </div>
+                    <div class="kpi-card-v4 border-cyan">
+                        <div class="kpi-content-v4">
+                            <span class="kpi-label-v4">KHTN được xử lý <span class="info-circle-icon"
+                                    title="Khách hàng tiềm năng đã được tư vấn">ⓘ</span></span>
+                            <span id="detail-kpi-processed" class="kpi-value-v4">10.345</span>
+                        </div>
+                    </div>
+                    <div class="kpi-card-v4 border-green">
+                        <div class="kpi-content-v4">
+                            <span class="kpi-label-v4">Số hợp đồng <span class="info-circle-icon"
+                                    title="Hợp đồng bán hàng thành công">ⓘ</span></span>
+                            <span id="detail-kpi-contracts" class="kpi-value-v4">12.480</span>
+                        </div>
+                    </div>
+                    <div class="kpi-card-v4 border-orange">
+                        <div class="kpi-content-v4">
+                            <span class="kpi-label-v4">Tỷ lệ chuyển đổi <span class="info-circle-icon"
+                                    title="Tỷ lệ chuyển đổi">ⓘ</span></span>
+                            <span id="detail-kpi-cr" class="kpi-value-v4">12.8%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2 CỘT: TRÁI - THÔNG TIN LINK AM, PHẢI - SẢN PHẨM DỊCH VỤ READ-ONLY (CHUẨN PIC_04) -->
+                <div class="detail-two-col-v4">
+                    <!-- CỘT TRÁI: THÔNG TIN LINK AM -->
+                    <div class="card detail-panel-v4">
+                        <h3 class="panel-heading-v4">Thông tin link AM</h3>
+
+                        <div class="form-group-v4">
+                            <label class="field-label-v4">Shortlink</label>
+                            <div class="shortlink-box-v4">
+                                <input type="text" id="detail-shortlink-input" readonly value="">
+                                <button class="btn-icon-action" title="Sao chép link" onclick="copyDetailShortlink()">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-group-v4 qr-group-v4">
+                            <label class="field-label-v4">Mã QR</label>
+                            <div class="qr-box-v4">
+                                <img id="detail-qr-img" src="" alt="QR Code" class="qr-code-img-v4">
+                                <button class="btn-icon-action qr-download-btn" title="Tải ảnh mã QR"
+                                    onclick="downloadQRCode()">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                        <polyline points="7 10 12 15 17 10"></polyline>
+                                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CỘT PHẢI: SẢN PHẨM DỊCH VỤ (VIEW-ONLY CHUẨN PIC_04) -->
+                    <div class="card detail-panel-v4">
+                        <div class="panel-header-row-v4">
+                            <h3 class="panel-heading-v4">Sản phẩm dịch vụ</h3>
+                            <span id="detail-product-count-badge" class="badge-count-v4" style="display: none;">0
+                                gói</span>
+                        </div>
+
+                        <!-- DANH SÁCH GÓI ĐÃ CẤU HÌNH (READ-ONLY) -->
+                        <div id="detail-products-view-list" class="detail-products-view-list-v4">
+                            <!-- Rendered by JS -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+
+    </main>
+    </div>
+
+    <!-- MODAL GIẢ LẬP LANDING PAGE THỰC TẾ (SPEEDX WI-FI 7 FPT - BYPASS TRACKING) -->
+    <div id="modal-landing-preview" class="sop-modal-overlay">
+        <div class="sop-modal-container modal-landing">
+            <div class="landing-browser-bar">
+                <div class="browser-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="browser-url-bar" id="browser-mock-url">
+                    https://fpt.vn/dang-ky-nang-cap-wifi7?utm_source=affiliate&aff_bypass=true
+                </div>
+                <div class="bypass-badge">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                    Bypass Tracking Active
+                </div>
+                <button class="modal-close-btn" onclick="closeLandingPreviewModal()">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="landing-viewport">
+                <!-- Navigation Bar -->
+                <div class="mock-fpt-nav">
+                    <div class="mock-fpt-logo-group">
+                        <div class="mock-fpt-logo">FPT Telecom</div>
+                        <span class="wifi7-pill-tag">SpeedX &bull; Wi-Fi 7</span>
+                    </div>
+                    <div class="mock-fpt-navlinks">
+                        <span>Tính năng nổi bật</span>
+                        <span>Gói cước SpeedX</span>
+                        <span>Công nghệ XGS-PON</span>
+                        <span>Thiết bị</span>
+                        <span>Đăng ký</span>
+                        <span>Hỏi đáp FAQ</span>
+                    </div>
+                    <div class="mock-fpt-hotline">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                        1900 6600
+                    </div>
+                </div>
+
+                <!-- Hero Section -->
+                <div class="mock-landing-hero wifi7-hero">
+                    <div class="salesman-sticky-card">
+                        <img id="mock-salesman-avatar" src="" alt="Avatar" class="avatar-sm">
+                        <div>
+                            <div class="sales-label">Tư vấn viên phụ trách</div>
+                            <div class="sales-name" id="mock-salesman-name">Nguyễn Văn A (FTEL)</div>
+                        </div>
+                    </div>
+                    <div class="hero-tech-badge">TIÊN PHONG CÔNG NGHỆ INTERNET THẾ HỆ MỚI</div>
+                    <h1 class="mock-hero-title">ĐĂNG KÝ LẮP WI-FI 7, CÔNG NGHỆ XGS-PON | SPEEDX FPT</h1>
+                    <p class="mock-hero-subtitle">Tốc độ đối xứng lên đến <strong>10 Gbps</strong>, xử lý đa tác vụ, 3 băng tần kết nối, chịu tải gấp 4 lần công nghệ cũ.</p>
+                    <div class="hero-cta-group">
+                        <a href="#mock-register-anchor" class="btn-hero-primary">Đăng ký lắp đặt ngay</a>
+                        <a href="#mock-packages-anchor" class="btn-hero-secondary">Khám phá gói cước SpeedX</a>
+                    </div>
+                    <!-- Highlights Bar -->
+                    <div class="wifi7-highlight-bar">
+                        <div class="highlight-item">
+                            <div class="hl-number">10 Gbps</div>
+                            <div class="hl-label">Băng thông đối xứng</div>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="hl-number">&lt; 1 ms</div>
+                            <div class="hl-label">Độ trễ siêu thấp</div>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="hl-number">320 MHz</div>
+                            <div class="hl-label">Băng thông kênh x2</div>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="hl-number">x4 Lần</div>
+                            <div class="hl-label">Khả năng chịu tải</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Gói cước (Vùng sản phẩm có thể tùy biến) -->
+                <div class="mock-cards-section" id="mock-packages-anchor">
+                    <div class="preview-mode-banner" id="preview-mode-badge">Đang hiển thị gói cước tùy biến</div>
+                    <h3 class="section-title">CÁC GÓI CƯỚC WI-FI 7 SPEEDX FPT</h3>
+                    <p class="section-desc">Lựa chọn gói cước phù hợp nhất với nhu cầu trải nghiệm Internet siêu tốc độ của bạn</p>
+                    <div id="mock-cards-grid" class="mock-cards-grid">
+                        <!-- Rendered by JS -->
+                    </div>
+                </div>
+
+                <!-- Section: Công nghệ XGS-PON & Wi-Fi 7 -->
+                <div class="mock-tech-section">
+                    <h3 class="section-title text-white">ĐỘT PHÁ CÔNG NGHỆ CÙNG FPT TELECOM</h3>
+                    <p class="section-desc text-white-70">Nền tảng truyền dẫn quang XGS-PON kết hợp chuẩn Wi-Fi 7 tối tân</p>
+                    <div class="tech-features-grid">
+                        <div class="tech-card">
+                            <div class="tech-icon-box">⚡</div>
+                            <h4>Multi-Link Operation (MLO)</h4>
+                            <p>Kết nối đồng thời trên nhiều băng tần (2.4GHz, 5GHz, 6GHz), tự động tối ưu hóa đường truyền, không lo đứt quãng.</p>
+                        </div>
+                        <div class="tech-card">
+                            <div class="tech-icon-box">🚀</div>
+                            <h4>Hạ tầng Cáp quang XGS-PON</h4>
+                            <p>Công nghệ quang thụ động thế hệ mới với tốc độ đối xứng 10Gbps/10Gbps, sẵn sàng cho kỷ nguyên AI & Cloud.</p>
+                        </div>
+                        <div class="tech-card">
+                            <div class="tech-icon-box">📡</div>
+                            <h4>Kênh truyền 320 MHz</h4>
+                            <p>Độ rộng kênh truyền tăng gấp đôi so với Wi-Fi 6, triệt tiêu hoàn toàn nghẽn mạng trong môi trường mật độ cao.</p>
+                        </div>
+                        <div class="tech-card">
+                            <div class="tech-icon-box">🛡️</div>
+                            <h4>Mã hóa 4K-QAM (4096-QAM)</h4>
+                            <p>Mật độ truyền tải dữ liệu tăng thêm 20%, giúp truyền phát video 8K, livestream chất lượng cao mượt mà không độ trễ.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Thiết bị đi kèm -->
+                <div class="mock-devices-section">
+                    <h3 class="section-title">THIẾT BỊ ĐI KÈM TIÊN TIẾN</h3>
+                    <p class="section-desc">Trang bị thế hệ Modem & Access Point Wi-Fi 7 chính hãng từ FPT Telecom</p>
+                    <div class="devices-grid">
+                        <div class="device-card">
+                            <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=300&auto=format&fit=crop&q=80" alt="Modem Wi-Fi 7" class="device-img">
+                            <h4>Modem Wi-Fi 7 Dual-Band / Tri-Band</h4>
+                            <p>Thiết bị Router trung tâm hỗ trợ tốc độ cực cao, trang bị cổng 2.5Gbps / 10Gbps LAN chuyên dụng.</p>
+                        </div>
+                        <div class="device-card">
+                            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=300&auto=format&fit=crop&q=80" alt="Access Point Wi-Fi 7 Mesh" class="device-img">
+                            <h4>Access Point Wi-Fi 7 Mesh SpeedX</h4>
+                            <p>Mở rộng vùng phủ sóng toàn diện cho biệt thự, căn hộ cao cấp hoặc văn phòng đa tầng không góc chết.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Form Đăng ký tư vấn trực tuyến -->
+                <div class="mock-register-section" id="mock-register-anchor">
+                    <div class="register-card">
+                        <h3 class="register-title">ĐĂNG KÝ TƯ VẤN LẮP ĐẶT WI-FI 7 MIỄN PHÍ</h3>
+                        <p class="register-subtitle">Chuyên viên FPT Telecom sẽ liên hệ tư vấn trong vòng 10 phút</p>
+                        <div class="register-form-grid">
+                            <div class="form-group mb-0">
+                                <label class="reg-label">Họ và tên *</label>
+                                <input type="text" class="form-control" placeholder="Nguyễn Văn A">
+                            </div>
+                            <div class="form-group mb-0">
+                                <label class="reg-label">Số điện thoại *</label>
+                                <input type="text" class="form-control" placeholder="0988xxxxxx">
+                            </div>
+                            <div class="form-group mb-0">
+                                <label class="reg-label">Tỉnh / Thành phố *</label>
+                                <input type="text" class="form-control" placeholder="Ví dụ: Hà Nội / TP.HCM">
+                            </div>
+                            <div class="form-group mb-0">
+                                <label class="reg-label">Địa chỉ lắp đặt cụ thể *</label>
+                                <input type="text" class="form-control" placeholder="Số nhà, tên đường, phường/xã...">
+                            </div>
+                        </div>
+                        <button class="btn-register-submit" onclick="showToast('Đã gửi thông tin đăng ký tư vấn thành công!')">GỬI YÊU CẦU ĐĂNG KÝ TƯ VẤN</button>
+                    </div>
+                </div>
+
+                <!-- Section: FAQ -->
+                <div class="mock-faq-section">
+                    <h3 class="section-title">CÂU HỎI THƯỜNG GẶP (FAQ)</h3>
+                    <div class="faq-accordion">
+                        <div class="faq-item">
+                            <div class="faq-question">1. Wi-Fi 7 khác gì so với các chuẩn Wi-Fi 6 và Wi-Fi 5 trước đây?</div>
+                            <div class="faq-answer">Wi-Fi 7 đạt tốc độ tối đa lên đến 10Gbps (nhanh gấp 4.8 lần so với Wi-Fi 6), độ trễ giảm xuống dưới 1ms nhờ công nghệ MLO (Multi-Link Operation) và độ rộng kênh 320MHz.</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">2. Thiết bị điện thoại, máy tính cũ có kết nối được với Modem Wi-Fi 7 không?</div>
+                            <div class="faq-answer">Wi-Fi 7 tương thích ngược 100% với tất cả các thiết bị dùng chuẩn Wi-Fi 6, Wi-Fi 5, Wi-Fi 4 hiện có trên thị trường.</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">3. Thủ tục đăng ký và thời gian triển khai lắp đặt Wi-Fi 7 SpeedX mất bao lâu?</div>
+                            <div class="faq-answer">Thời gian triển khai lắp đặt nhanh chóng trong vòng 24 - 48 giờ kể từ khi ký hợp đồng online. Đội ngũ kỹ thuật viên FPT sẽ hỗ trợ đo kiểm sóng tận nhà.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="mock-fpt-footer">
+                    <div class="footer-col">
+                        <div class="footer-logo">FPT Telecom</div>
+                        <p class="footer-text">Công ty Cổ phần Viễn thông FPT &bull; Nhà mạng tiên phong hạ tầng XGS-PON & Wi-Fi 7 tại Việt Nam.</p>
+                    </div>
+                    <div class="footer-col">
+                        <div class="footer-heading">Hotline Hỗ Trợ 24/7</div>
+                        <div class="footer-hotline-num">1900 6600</div>
+                        <p class="footer-text">Email: hotrokhachhang@fpt.vn</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="sop-toast" class="sop-toast">
+        <div class="toast-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+        </div>
+        <div class="toast-msg" id="toast-msg">Thao tác thành công!</div>
+    </div>
+
+    <script src="app.js?v=20260824_v2"></script>
+</body>
+
+</html>
