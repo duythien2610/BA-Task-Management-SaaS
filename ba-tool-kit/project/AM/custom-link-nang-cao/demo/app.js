@@ -1091,20 +1091,6 @@ function animateFLIP(container, mutationFn) {
     });
 }
 
-// Cập nhật số thứ tự (#1, #2, #3) realtime khi kéo thả
-function updatePackageOrderBadges() {
-    const container = document.getElementById("form-products-editor");
-    if (!container) return;
-    const cards = container.querySelectorAll(".configured-product-card-pic2");
-    cards.forEach((card, idx) => {
-        const badge = card.querySelector(".package-order-num");
-        if (badge) {
-            badge.innerText = `#${idx + 1}`;
-            badge.title = `Vị trí hiển thị #${idx + 1}`;
-        }
-    });
-}
-
 // Render các thẻ gói cước đã chọn chuẩn 100% Mockup pic2 kèm tính năng Kéo thả Realtime mượt mà
 function renderProductsEditor() {
     const container = document.getElementById("form-products-editor");
@@ -1127,7 +1113,7 @@ function renderProductsEditor() {
 
         const priceDisplay = (locCode && prod.prices && prod.prices[locCode]) ? ` &bull; <strong style="color:#0284c7;">${prod.prices[locCode]}</strong>` : "";
         card.innerHTML = `
-            <div class="drag-handle-pic2" title="Kéo thả để sắp xếp thứ tự hiển thị">
+            <div class="drag-handle-pic2" title="Kéo thả để sắp xếp thứ tự hiển thị ưu tiên trên Landing Page">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
                     <circle cx="8" cy="5" r="2"/>
                     <circle cx="8" cy="12" r="2"/>
@@ -1137,7 +1123,6 @@ function renderProductsEditor() {
                     <circle cx="16" cy="19" r="2"/>
                 </svg>
             </div>
-            <span class="package-order-num" title="Vị trí hiển thị #${index + 1}">#${index + 1}</span>
             <img src="${prod.img}" alt="${prod.name}" class="configured-card-thumb-pic2">
             <div class="configured-card-info-pic2">
                 <div class="configured-card-name-pic2">${prod.name}</div>
@@ -1165,7 +1150,6 @@ function renderProductsEditor() {
             card.classList.remove("dragging");
             const newIds = Array.from(container.children).map(c => c.dataset.id).filter(Boolean);
             formDraftProductIds = newIds;
-            updatePackageOrderBadges();
         });
 
         container.appendChild(card);
@@ -1182,14 +1166,12 @@ function renderProductsEditor() {
             if (container.lastElementChild !== draggingCard) {
                 animateFLIP(container, () => {
                     container.appendChild(draggingCard);
-                    updatePackageOrderBadges();
                 });
             }
         } else {
             if (afterElement !== draggingCard && afterElement.previousElementSibling !== draggingCard) {
                 animateFLIP(container, () => {
                     container.insertBefore(draggingCard, afterElement);
-                    updatePackageOrderBadges();
                 });
             }
         }
