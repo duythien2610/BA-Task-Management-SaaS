@@ -725,6 +725,11 @@ function openCreateForm() {
     const provSelect = document.getElementById("select-province");
     if (provSelect) provSelect.value = "";
     populateWards("", "");
+    const provErr = document.getElementById("province-error");
+    if (provErr) provErr.style.display = "none";
+    const wardErr = document.getElementById("ward-error");
+    if (wardErr) wardErr.style.display = "none";
+
     updateFormTabBadges();
     updateFormSelectTriggerText();
     renderProductsEditor();
@@ -772,6 +777,12 @@ function openEditForm(linkId) {
         provSelect.value = selectedLocationCode;
         populateWards(selectedLocationCode, selectedWardCode);
     }
+
+    const provErr = document.getElementById("province-error");
+    if (provErr) provErr.style.display = "none";
+    const wardErr = document.getElementById("ward-error");
+    if (wardErr) wardErr.style.display = "none";
+
     updateFormTabBadges();
     updateFormSelectTriggerText();
     renderProductsEditor();
@@ -783,6 +794,14 @@ function openEditForm(linkId) {
     document.getElementById("form-preview-active").style.display = "block";
     document.getElementById("form-preview-shortlink").value = link.shortlink;
     document.getElementById("form-preview-qr").src = link.qrImg;
+}
+
+function cancelForm() {
+    if (isEditMode && editingLinkId) {
+        openDetailView(editingLinkId);
+    } else {
+        showListView();
+    }
 }
 
 function openEditFormFromDetail() {
@@ -820,6 +839,7 @@ function switchFormTab(tab) {
 // ==========================================================================
 // 6. Xử lý Địa giới Hành chính (Tỉnh/Thành & Phường/Xã)
 // ==========================================================================
+// Reset lỗi khi chọn Tỉnh/Thành hoặc Phường/Xã
 function handleProvinceChange() {
     const provSelect = document.getElementById("select-province");
     if (!provSelect) return;
@@ -829,6 +849,9 @@ function handleProvinceChange() {
     selectedWardCode = ""; // Reset Phường/Xã khi đổi Tỉnh (Ràng buộc toàn vẹn địa giới)
 
     populateWards(selectedLocationCode, "");
+
+    const provErr = document.getElementById("province-error");
+    if (provErr && newLocation) provErr.style.display = "none";
 
     // QUY TẮC NGHIỆP VỤ: Khi thay đổi Tỉnh/Thành phố -> Reset toàn bộ các gói cước đã chọn (không hiện toast)
     formDraftProductIds = [];
@@ -843,6 +866,9 @@ function handleWardChange() {
     const wardSelect = document.getElementById("select-ward");
     if (!wardSelect) return;
     selectedWardCode = wardSelect.value;
+
+    const wardErr = document.getElementById("ward-error");
+    if (wardErr && selectedWardCode) wardErr.style.display = "none";
 
     // QUY TẮC NGHIỆP VỤ: Khi thay đổi Phường/Xã -> Reset toàn bộ các gói cước đã chọn (không hiện toast)
     formDraftProductIds = [];
@@ -1319,17 +1345,41 @@ function saveCustomLinkForm() {
         return;
     }
 
-    // 3. Validate Khu vực khi đã chọn gói SP/DV
-    if (formDraftProductIds.length > 0) {
+    // 3. Validate Khu vực & Phường/Xã (BẮT BUỘC trong chế độ Chỉnh sửa link)
+    if (isEditMode) {
         if (!location) {
-            showToast("Vui lòng chọn Tỉnh/Thành phố áp dụng cho các gói cước đã chọn!");
+            showToast("Vui lòng chọn Tỉnh/Thành phố!");
+            const provErr = document.getElementById("province-error");
+            if (provErr) provErr.style.display = "block";
             document.getElementById("select-province")?.focus();
             return;
+        } else {
+            const provErr = document.getElementById("province-error");
+            if (provErr) provErr.style.display = "none";
         }
+
         if (!ward) {
-            showToast("Vui lòng chọn Phường/Xã áp dụng cho các gói cước đã chọn!");
+            showToast("Vui lòng chọn Phường/Xã!");
+            const wardErr = document.getElementById("ward-error");
+            if (wardErr) wardErr.style.display = "block";
             document.getElementById("select-ward")?.focus();
             return;
+        } else {
+            const wardErr = document.getElementById("ward-error");
+            if (wardErr) wardErr.style.display = "none";
+        }
+    } else {
+        if (formDraftProductIds.length > 0) {
+            if (!location) {
+                showToast("Vui lòng chọn Tỉnh/Thành phố!");
+                document.getElementById("select-province")?.focus();
+                return;
+            }
+            if (!ward) {
+                showToast("Vui lòng chọn Phường/Xã!");
+                document.getElementById("select-ward")?.focus();
+                return;
+            }
         }
     }
 
@@ -1545,6 +1595,26 @@ function renderLandingMockCards(productIds, locationCode) {
         badge.innerText = `Đang hiển thị ${productIds.length} gói cước Wi-Fi 7 tùy biến của bạn`;
         badge.className = "preview-mode-banner custom-active";
         displayProducts = productIds.map(pid => SYSTEM_PRODUCTS.find(p => p.id === pid)).filter(Boolean);
+    } else if (locationCode) {
+        // Đã chọn Tỉnh/Thành & Phường/Xã nhưng KHÔNG chọn gói nào -> Hiển thị "Không có sản phẩm dịch vụ khả dụng"
+        const provName = (PROVINCES[locationCode] && PROVINCES[locationCode].name) ? PROVINCES[locationCode].name : "khu vực này";
+        badge.innerText = `Khu vực: ${provName} — Không có sản phẩm dịch vụ khả dụng`;
+        badge.className = "preview-mode-banner empty-loc-mode";
+
+        grid.innerHTML = `
+            <div class="landing-empty-products-box" style="grid-column: 1 / -1; text-align: center; padding: 48px 24px; background: #ffffff; border-radius: 12px; border: 1px dashed #cbd5e1; margin: 10px 0;">
+                <div style="width: 56px; height: 56px; border-radius: 50%; background: #fef2f2; color: #ef4444; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+                    </svg>
+                </div>
+                <h4 style="font-size: 16px; font-weight: 700; color: #1e293b; margin-bottom: 6px;">Không có sản phẩm dịch vụ khả dụng</h4>
+                <p style="font-size: 13.5px; color: #64748b; max-width: 440px; margin: 0 auto 18px; line-height: 1.5;">Hiện tại liên kết này chưa cấu hình gói cước khả dụng tại khu vực <strong>${provName}</strong>. Vui lòng liên hệ chuyên viên tư vấn để được hỗ trợ trực tiếp.</p>
+                <button class="btn-mock-order" style="max-width: 220px; margin: 0 auto; background: #0066cc;" onclick="showToast('Yêu cầu tư vấn đã được gửi tới chuyên viên!')">Yêu cầu tư vấn ngay</button>
+            </div>
+        `;
+        return;
     } else {
         badge.innerText = `Đang hiển thị toàn bộ danh mục gói cước Wi-Fi 7 SpeedX mặc định của URL đích`;
         badge.className = "preview-mode-banner default-mode";

@@ -14,7 +14,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20260825_v13">
+    <link rel="stylesheet" href="style.css?v=20260825_v14">
 </head>
 
 <body>
@@ -394,7 +394,7 @@
                                     </div>
                                     <div class="location-row-2col">
                                         <div class="form-group mb-0">
-                                            <label class="form-label required">Tỉnh/Thành phố</label>
+                                            <label class="form-label required">Tỉnh/Thành phố <span style="color:#ef4444; font-weight:700;">*</span></label>
                                             <select id="select-province" class="form-control"
                                                 onchange="handleProvinceChange()">
                                                 <option value="">-- Chọn Tỉnh/Thành phố --</option>
@@ -407,13 +407,15 @@
                                                 <option value="DN2">Đồng Nai</option>
                                                 <option value="AG">An Giang</option>
                                             </select>
+                                            <div id="province-error" class="field-error-msg" style="display:none; color:#ef4444; font-size:12px; margin-top:4px; font-weight:500;">Vui lòng chọn Tỉnh/Thành phố!</div>
                                         </div>
                                         <div class="form-group mb-0">
-                                            <label class="form-label required">Phường/Xã</label>
+                                            <label class="form-label required">Phường/Xã <span style="color:#ef4444; font-weight:700;">*</span></label>
                                             <select id="select-ward" class="form-control" onchange="handleWardChange()"
                                                 disabled>
                                                 <option value="">-- Chọn Tỉnh/Thành trước --</option>
                                             </select>
+                                            <div id="ward-error" class="field-error-msg" style="display:none; color:#ef4444; font-size:12px; margin-top:4px; font-weight:500;">Vui lòng chọn Phường/Xã!</div>
                                         </div>
                                     </div>
                                 </div>
@@ -449,7 +451,7 @@
 
                         <!-- Form Actions -->
                         <div class="form-actions-bottom">
-                            <button class="btn btn-secondary" onclick="showListView()">Hủy</button>
+                            <button class="btn btn-secondary" onclick="cancelForm()">Hủy</button>
                             <button id="btn-save-form" class="btn btn-primary btn-lg-wide"
                                 onclick="saveCustomLinkForm()">
                                 Tạo link
@@ -596,17 +598,6 @@
                         </div>
                     </div>
                     <div class="detail-actions-v4" style="display:flex; align-items:center; gap:8px;">
-                        <button class="btn btn-secondary btn-sm"
-                            style="display:flex; align-items:center; gap:6px; height:34px;"
-                            onclick="openDetailLivePreview()">
-                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                <polyline points="15 3 21 3 21 9"></polyline>
-                                <line x1="10" y1="14" x2="21" y2="3"></line>
-                            </svg>
-                            Xem trang đích
-                        </button>
                         <button class="btn btn-edit-link-v4" onclick="openEditFormFromDetail()">
                             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2">
@@ -946,7 +937,7 @@
         <div class="toast-msg" id="toast-msg">Thao tác thành công!</div>
     </div>
 
-    <script src="app.js?v=20260825_v13"></script>
+    <script src="app.js?v=20260825_v14"></script>
 </body>
 
 </html>
