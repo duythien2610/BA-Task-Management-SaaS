@@ -14,7 +14,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20260825_v14">
+    <link rel="stylesheet" href="style.css?v=20260825_v15">
 </head>
 
 <body>
@@ -171,28 +171,38 @@
                     </div>
                 </div>
 
-                <!-- KHỐI BỘ LỌC NÂNG CAO (USE CASE 1.1 TRONG EXCEL) -->
+                <!-- KHỐI BỘ LỌC NÂNG CAO (USE CASE 1.1 TRONG EXCEL & BR01-03) -->
                 <div id="advanced-filter-panel" class="advanced-filter-panel" style="display: none;">
                     <div class="filter-panel-inner">
                         <div class="filter-field-col">
                             <label class="filter-col-label">Khoảng thời gian tạo link</label>
-                            <select id="filter-date-preset" class="form-control filter-select">
+                            <select id="filter-date-preset" class="form-control filter-select" onchange="handleFilterDatePresetChange()">
                                 <option value="all">Tất cả thời gian</option>
                                 <option value="today">Hôm nay</option>
                                 <option value="last7days">7 ngày qua</option>
                                 <option value="last30days">30 ngày qua</option>
+                                <option value="custom">Tùy chỉnh khoảng ngày...</option>
                             </select>
+                            <div id="filter-custom-date-container" class="filter-custom-date-row" style="display: none; margin-top: 8px; gap: 6px; align-items: center;">
+                                <input type="date" id="filter-date-from" class="form-control filter-date-input" title="Từ ngày">
+                                <span style="color: #94a3b8; font-size: 12px;">đến</span>
+                                <input type="date" id="filter-date-to" class="form-control filter-date-input" title="Đến ngày">
+                            </div>
                         </div>
                         <div class="filter-field-col">
-                            <label class="filter-col-label">Loại link tiếp thị</label>
+                            <label class="filter-col-label">Loại link tiếp thị <span id="filter-type-count" style="color: #0066cc; font-weight: 600; font-size: 11.5px;">(Đã chọn: 2/2)</span></label>
                             <div class="filter-checkbox-group">
                                 <label class="filter-checkbox-item">
-                                    <input type="checkbox" id="filter-type-url" value="url" checked>
-                                    <span>URL đích (Chưa tùy biến SP)</span>
+                                    <input type="checkbox" id="filter-type-all" checked onchange="toggleFilterTypeAll(this.checked)">
+                                    <span style="font-weight: 600; color: #1e293b;">Chọn tất cả</span>
                                 </label>
                                 <label class="filter-checkbox-item">
-                                    <input type="checkbox" id="filter-type-custom" value="custom" checked>
-                                    <span>Sản phẩm dịch vụ (Đã tùy biến)</span>
+                                    <input type="checkbox" id="filter-type-url" value="url" checked onchange="syncFilterTypeCheckboxes()">
+                                    <span>URL đích</span>
+                                </label>
+                                <label class="filter-checkbox-item">
+                                    <input type="checkbox" id="filter-type-custom" value="custom" checked onchange="syncFilterTypeCheckboxes()">
+                                    <span>Sản phẩm dịch vụ</span>
                                 </label>
                             </div>
                         </div>
@@ -598,13 +608,13 @@
                         </div>
                     </div>
                     <div class="detail-actions-v4" style="display:flex; align-items:center; gap:8px;">
-                        <button class="btn btn-edit-link-v4" onclick="openEditFormFromDetail()">
+                        <button class="btn btn-edit-link-v4" title="Cấu hình SP/DV" onclick="openEditFormFromDetail()">
                             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2">
                                 <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                                 <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                             </svg>
-                            Chỉnh sửa
+                            Cấu hình SP/DV
                         </button>
                     </div>
                 </div>
@@ -937,7 +947,7 @@
         <div class="toast-msg" id="toast-msg">Thao tác thành công!</div>
     </div>
 
-    <script src="app.js?v=20260825_v14"></script>
+    <script src="app.js?v=20260825_v15"></script>
 </body>
 
 </html>

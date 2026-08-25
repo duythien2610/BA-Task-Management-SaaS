@@ -6,13 +6,29 @@
  * 1. KIẾN TRÚC 2-TAB FORM (Mentor & PO Approved):
  *    - Form TẠO link: Bắt buộc URL-First. Tab "URL đích" active; Tab "Chọn từ danh sách" DISABLED.
  *    - Form SỬA link: Tab "URL đích" Read-only vĩnh viễn; Tab "Chọn từ danh sách" ENABLED & active mặc định.
- * 2. BỘ CHỌN KHU VỰC 2 CẤP & SMART RE-PRICING:
- *    - Khi đổi Tỉnh/Thành: Phường/Xã reset; Gói hợp lệ tự đổi đơn giá theo Tỉnh mới; Gói thiếu giá tự loại bỏ kèm cảnh báo.
- * 3. PRICING GUARDRAIL:
- *    - Gói cước chưa duyệt giá (pricingReady = false) hoặc thiếu giá tại Tỉnh: Vô hiệu hóa màu xám, khóa checkbox, giá "---".
- * 4. BỘ LỌC NÂNG CAO, SẮP XẾP REALTIME, PHÂN TRANG ĐỘNG & TÌM KIẾM KHÔNG DẤU.
- * 5. TẢI ẢNH MÃ QR PNG THẬT (QR_{slug}.png).
+ * 2. BỘ CHỌN KHU VỰC 2 CẤP & QUY TẮC RESET:
+ *    - Bắt buộc chọn Tỉnh/Thành & Phường/Xã khi Chỉnh sửa link.
+ *    - Khi thay đổi Tỉnh/Thành hoặc Phường/Xã: Tự động reset toàn bộ các gói cước đã chọn (không hiện toast) để bảo đảm đúng đơn giá và chính sách khu vực mới.
+ * 3. PRICING GUARDRAIL & FLIP DRAG-AND-DROP:
+ *    - Gói cước chưa duyệt giá (pricingReady = false): Vô hiệu hóa màu xám, khóa checkbox, giá "---".
+ *    - Kéo thả sắp xếp thứ tự hiển thị ưu tiên trên Landing Page với chuyển động FLIP Realtime mượt mà.
+ * 4. BỘ LỌC NÂNG CAO (Loại link, Chọn tất cả, Khoảng ngày tùy chỉnh, Đếm số lượng), SẮP XẾP REALTIME & TÌM KIẾM THÔNG MINH.
+ * 5. TẢI ẢNH MÃ QR PNG THẬT THEO ĐÚNG LINK ĐANG THAO TÁC.
  */
+
+// Helper tạo chuỗi ngày giờ tương đối so với thời điểm hiện tại (phục vụ test bộ lọc Hôm nay / 7 ngày / 30 ngày)
+function getRelativeDateStr(daysAgo, hour = 8, min = 30) {
+    const d = new Date();
+    d.setDate(d.getDate() - daysAgo);
+    d.setHours(hour, min, 0);
+    const day = String(d.getDate()).padStart(2, '0');
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const year = d.getFullYear();
+    const h = String(d.getHours()).padStart(2, '0');
+    const m = String(d.getMinutes()).padStart(2, '0');
+    const s = String(d.getSeconds()).padStart(2, '0');
+    return `${day}/${month}/${year} ${h}:${m}:${s}`;
+}
 
 // ==========================================================================
 // 1. Dữ liệu Địa giới Hành chính 2 cấp (Tỉnh/Thành + Phường/Xã)
@@ -175,7 +191,7 @@ const SYSTEM_PRODUCTS = [
         },
         img: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=120&auto=format&fit=crop&q=80"
     },
-    // Gói cước giới hạn khu vực (Chỉ bán tại HN & TP.HCM để demo Smart Auto-Pruning khi đổi tỉnh)
+    // Gói cước giới hạn khu vực (Chỉ bán tại HN & TP.HCM)
     {
         id: "prod_07",
         name: "SpeedX Doanh Nghiệp 10G Chuyên dụng",
@@ -200,7 +216,7 @@ const SYSTEM_PRODUCTS = [
 ];
 
 // ==========================================================================
-// 3. Mock Data: Danh sách Link tôi tạo (Khớp 100% Mockup pic_01)
+// 3. Mock Data: Danh sách Link tôi tạo (Khớp 100% Mockup pic_01 & BR01-03)
 // ==========================================================================
 let customLinks = [
     {
@@ -214,9 +230,10 @@ let customLinks = [
         location: "",
         ward: "",
         qrImg: "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://fpt.vn/speedx7",
-        createdAt: "24/03/2026 11:43:00",
-        updatedAt: "19/03/2026 17:43:00",
+        createdAt: getRelativeDateStr(0, 11, 43), // Tạo hôm nay
+        updatedAt: getRelativeDateStr(0, 11, 43),
         productIds: [], // Chưa cấu hình SP/DV -> Hiển thị URL đích
+        hasBeenEdited: false, // Chưa từng sửa qua Form SP/DV (để test badge "Mới")
         kpi: { leads: "142", processed: "110", contracts: "45", cr: "31.8%" }
     },
     {
@@ -230,9 +247,10 @@ let customLinks = [
         location: "HN",
         ward: "HN-CG",
         qrImg: "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://fpt.vn/wifi7hn",
-        createdAt: "20/03/2026 08:00:00",
-        updatedAt: "20/03/2026 08:00:00",
-        productIds: ["prod_01", "prod_02", "prod_03"], // Đã cấu hình 3 gói SpeedX -> Khớp chuẩn Pic_04
+        createdAt: getRelativeDateStr(2, 8, 0), // 2 ngày trước
+        updatedAt: getRelativeDateStr(2, 8, 0),
+        productIds: ["prod_01", "prod_02", "prod_03"], // Đã cấu hình 3 gói SpeedX
+        hasBeenEdited: true,
         kpi: { leads: "32.384", processed: "10.345", contracts: "12.480", cr: "12.8%" }
     },
     {
@@ -246,9 +264,10 @@ let customLinks = [
         location: "HCM",
         ward: "HCM-Q1",
         qrImg: "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://fpt.vn/wifi7hcm",
-        createdAt: "15/03/2026 09:30:00",
-        updatedAt: "15/03/2026 09:30:00",
+        createdAt: getRelativeDateStr(5, 9, 30), // 5 ngày trước
+        updatedAt: getRelativeDateStr(5, 9, 30),
         productIds: ["prod_01", "prod_04"],
+        hasBeenEdited: true,
         kpi: { leads: "18.250", processed: "14.120", contracts: "8.900", cr: "16.4%" }
     },
     {
@@ -262,9 +281,10 @@ let customLinks = [
         location: "DN",
         ward: "DN-TK",
         qrImg: "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://fpt.vn/combospeedx",
-        createdAt: "21/03/2026 07:15:00",
-        updatedAt: "19/03/2026 17:43:00",
+        createdAt: getRelativeDateStr(12, 7, 15), // 12 ngày trước
+        updatedAt: getRelativeDateStr(12, 7, 15),
         productIds: ["prod_06"],
+        hasBeenEdited: true,
         kpi: { leads: "64", processed: "50", contracts: "12", cr: "18.8%" }
     },
     {
@@ -278,9 +298,10 @@ let customLinks = [
         location: "HN",
         ward: "HN-HK",
         qrImg: "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://fpt.vn/speedx10g",
-        createdAt: "10/03/2026 22:43:00",
-        updatedAt: "19/03/2026 17:43:00",
+        createdAt: getRelativeDateStr(20, 22, 43), // 20 ngày trước
+        updatedAt: getRelativeDateStr(20, 22, 43),
         productIds: ["prod_03", "prod_07"],
+        hasBeenEdited: true,
         kpi: { leads: "95", processed: "78", contracts: "28", cr: "29.5%" }
     },
     {
@@ -294,9 +315,10 @@ let customLinks = [
         location: "HP",
         ward: "HP-LB",
         qrImg: "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://fpt.vn/wifi7hp",
-        createdAt: "05/03/2026 14:20:00",
-        updatedAt: "05/03/2026 14:20:00",
+        createdAt: getRelativeDateStr(45, 14, 20), // 45 ngày trước
+        updatedAt: getRelativeDateStr(45, 14, 20),
         productIds: ["prod_01"],
+        hasBeenEdited: true,
         kpi: { leads: "32", processed: "28", contracts: "10", cr: "31.2%" }
     }
 ];
@@ -406,15 +428,41 @@ function getFilteredAndSortedLinks() {
         return false;
     });
 
-    // 3. Lọc theo Khoảng thời gian
+    // 3. Lọc theo Khoảng thời gian (Hôm nay / 7 ngày / 30 ngày / Tùy chỉnh)
     if (filterDatePreset !== "all") {
         const now = new Date();
         result = result.filter(link => {
             const linkDate = parseDateTimeStr(link.createdAt);
-            const diffDays = (now - linkDate) / (1000 * 60 * 60 * 24);
-            if (filterDatePreset === "today") return diffDays <= 1;
-            if (filterDatePreset === "last7days") return diffDays <= 7;
-            if (filterDatePreset === "last30days") return diffDays <= 30;
+            if (filterDatePreset === "today") {
+                const isToday = linkDate.getDate() === now.getDate() &&
+                                linkDate.getMonth() === now.getMonth() &&
+                                linkDate.getFullYear() === now.getFullYear();
+                return isToday;
+            }
+            if (filterDatePreset === "last7days") {
+                const diffDays = (now - linkDate) / (1000 * 60 * 60 * 24);
+                return diffDays >= 0 && diffDays <= 7;
+            }
+            if (filterDatePreset === "last30days") {
+                const diffDays = (now - linkDate) / (1000 * 60 * 60 * 24);
+                return diffDays >= 0 && diffDays <= 30;
+            }
+            if (filterDatePreset === "custom") {
+                const fromVal = document.getElementById("filter-date-from")?.value;
+                const toVal = document.getElementById("filter-date-to")?.value;
+                const linkTime = linkDate.getTime();
+                if (fromVal) {
+                    const fromDate = new Date(fromVal);
+                    fromDate.setHours(0, 0, 0, 0);
+                    if (linkTime < fromDate.getTime()) return false;
+                }
+                if (toVal) {
+                    const toDate = new Date(toVal);
+                    toDate.setHours(23, 59, 59, 999);
+                    if (linkTime > toDate.getTime()) return false;
+                }
+                return true;
+            }
             return true;
         });
     }
@@ -619,12 +667,55 @@ function clearSearchInput() {
     applyListFilteringAndRender();
 }
 
-// Advanced Filter Handlers (Use Case 1.1)
+// Advanced Filter Handlers (Use Case 1.1 trong Excel & BR01-03)
 function toggleAdvancedFilter() {
     const panel = document.getElementById("advanced-filter-panel");
     if (!panel) return;
     isFilterPanelOpen = !isFilterPanelOpen;
     panel.style.display = isFilterPanelOpen ? "block" : "none";
+}
+
+function handleFilterDatePresetChange() {
+    const preset = document.getElementById("filter-date-preset")?.value || "all";
+    const customContainer = document.getElementById("filter-custom-date-container");
+    if (customContainer) {
+        customContainer.style.display = (preset === "custom") ? "flex" : "none";
+    }
+}
+
+function toggleFilterTypeAll(checked) {
+    const typeUrlEl = document.getElementById("filter-type-url");
+    const typeCustomEl = document.getElementById("filter-type-custom");
+    if (typeUrlEl) typeUrlEl.checked = checked;
+    if (typeCustomEl) typeCustomEl.checked = checked;
+    updateFilterTypeCountText();
+}
+
+function syncFilterTypeCheckboxes() {
+    const typeUrlEl = document.getElementById("filter-type-url");
+    const typeCustomEl = document.getElementById("filter-type-custom");
+    const typeAllEl = document.getElementById("filter-type-all");
+
+    const urlChecked = typeUrlEl ? typeUrlEl.checked : false;
+    const customChecked = typeCustomEl ? typeCustomEl.checked : false;
+
+    if (typeAllEl) {
+        typeAllEl.checked = urlChecked && customChecked;
+        typeAllEl.indeterminate = (urlChecked !== customChecked);
+    }
+    updateFilterTypeCountText();
+}
+
+function updateFilterTypeCountText() {
+    const typeUrlEl = document.getElementById("filter-type-url");
+    const typeCustomEl = document.getElementById("filter-type-custom");
+    const countEl = document.getElementById("filter-type-count");
+    let count = 0;
+    if (typeUrlEl && typeUrlEl.checked) count++;
+    if (typeCustomEl && typeCustomEl.checked) count++;
+    if (countEl) {
+        countEl.innerText = `(Đã chọn: ${count}/2)`;
+    }
 }
 
 function applyAdvancedFilter() {
@@ -637,6 +728,25 @@ function applyAdvancedFilter() {
     filterLinkTypes = [];
     if (typeUrlEl && typeUrlEl.checked) filterLinkTypes.push("url");
     if (typeCustomEl && typeCustomEl.checked) filterLinkTypes.push("custom");
+
+    // Edge Case: Cảnh báo nếu không chọn loại link nào
+    if (filterLinkTypes.length === 0) {
+        showToast("Vui lòng chọn ít nhất 1 loại link tiếp thị!");
+        if (typeUrlEl) typeUrlEl.checked = true;
+        if (typeCustomEl) typeCustomEl.checked = true;
+        syncFilterTypeCheckboxes();
+        filterLinkTypes = ["url", "custom"];
+        return;
+    }
+
+    if (filterDatePreset === "custom") {
+        const fromVal = document.getElementById("filter-date-from")?.value;
+        const toVal = document.getElementById("filter-date-to")?.value;
+        if (!fromVal && !toVal) {
+            showToast("Vui lòng chọn khoảng ngày bắt đầu hoặc kết thúc!");
+            return;
+        }
+    }
 
     // Chỉ báo dot cam nếu đang có filter khác mặc định
     const isFiltered = (filterDatePreset !== "all") || (filterLinkTypes.length < 2);
@@ -651,27 +761,41 @@ function resetAdvancedFilter() {
     const datePresetEl = document.getElementById("filter-date-preset");
     const typeUrlEl = document.getElementById("filter-type-url");
     const typeCustomEl = document.getElementById("filter-type-custom");
+    const typeAllEl = document.getElementById("filter-type-all");
     const dot = document.getElementById("filter-active-dot");
+    const customContainer = document.getElementById("filter-custom-date-container");
+    const dateFromEl = document.getElementById("filter-date-from");
+    const dateToEl = document.getElementById("filter-date-to");
 
     if (datePresetEl) datePresetEl.value = "all";
     if (typeUrlEl) typeUrlEl.checked = true;
     if (typeCustomEl) typeCustomEl.checked = true;
+    if (typeAllEl) {
+        typeAllEl.checked = true;
+        typeAllEl.indeterminate = false;
+    }
     if (dot) dot.style.display = "none";
+    if (customContainer) customContainer.style.display = "none";
+    if (dateFromEl) dateFromEl.value = "";
+    if (dateToEl) dateToEl.value = "";
 
     filterDatePreset = "all";
     filterLinkTypes = ["url", "custom"];
+    updateFilterTypeCountText();
     currentPage = 1;
     applyListFilteringAndRender();
-    showToast("Đã thiết lập lại bộ lọc!");
+    showToast("Đã thiết lập lại bộ lọc mặc định!");
 }
 
-// Switch Views
+// Switch Views & State Resets
 function showSection(sectionId) {
     document.querySelectorAll(".view-section").forEach(sec => sec.classList.remove("active"));
     document.getElementById(sectionId)?.classList.add("active");
 }
 
 function showListView() {
+    currentDetailLinkId = null;
+    editingLinkId = null;
     showSection("view-list");
     applyListFilteringAndRender();
 }
@@ -682,6 +806,7 @@ function showListView() {
 function openCreateForm() {
     isEditMode = false;
     editingLinkId = null;
+    currentDetailLinkId = null;
     formDraftProductIds = [];
     isFirstSessionNewBadge = false;
     selectedLocationCode = "";
@@ -742,10 +867,11 @@ function openEditForm(linkId) {
 
     isEditMode = true;
     editingLinkId = linkId;
+    currentDetailLinkId = null; // Reset detail context để tránh nhầm QR/link
     formDraftProductIds = [...(link.productIds || [])];
     selectedLocationCode = link.location || "";
     selectedWardCode = link.ward || "";
-    isFirstSessionNewBadge = (formDraftProductIds.length === 0);
+    isFirstSessionNewBadge = (link && !link.hasBeenEdited); // Chỉ hiện badge mới nếu chưa từng lưu qua Form Sửa (BR03-03)
 
     showSection("view-form");
 
@@ -1394,6 +1520,7 @@ function saveCustomLinkForm() {
             link.ward = ward;
             link.productIds = [...formDraftProductIds];
             link.updatedAt = "Vừa xong";
+            link.hasBeenEdited = true; // Kết thúc vĩnh viễn trạng thái mới (BR03-03)
         }
         showToast("Cập nhật thông tin link thành công!");
         showListView();
@@ -1414,6 +1541,7 @@ function saveCustomLinkForm() {
             createdAt: "Hôm nay " + new Date().toLocaleTimeString('vi-VN'),
             updatedAt: "Vừa xong",
             productIds: [], // Tạo mới chưa có SP/DV tùy biến
+            hasBeenEdited: false, // Chưa từng sửa SP/DV
             kpi: { leads: "0", processed: "0", contracts: "0", cr: "0.0%" }
         };
         customLinks.unshift(newLink);
@@ -1430,6 +1558,7 @@ function openDetailView(linkId) {
     if (!link) return;
 
     currentDetailLinkId = linkId;
+    editingLinkId = null; // Đặt lại editing context để tránh nhầm QR
     showSection("view-detail");
 
     // Banner Header
@@ -1500,13 +1629,20 @@ function copyFormPreviewShortlink() {
     copyShortlink(val);
 }
 
-// TẢI ẢNH MÃ QR THẬT ĐỊNH DẠNG PNG (Use Case 4.2 trong Excel)
+// TẢI ẢNH MÃ QR THẬT ĐỊNH DẠNG PNG (Context-Aware: Không tải nhầm QR giữa các Link)
 function downloadQRCode() {
     let activeLink = null;
-    if (currentDetailLinkId) {
+    const isFormView = document.getElementById("view-form")?.classList.contains("active");
+    const isDetailView = document.getElementById("view-detail")?.classList.contains("active");
+
+    if (isFormView && editingLinkId) {
+        activeLink = customLinks.find(l => l.id === editingLinkId);
+    } else if (isDetailView && currentDetailLinkId) {
         activeLink = customLinks.find(l => l.id === currentDetailLinkId);
     } else if (editingLinkId) {
         activeLink = customLinks.find(l => l.id === editingLinkId);
+    } else if (currentDetailLinkId) {
+        activeLink = customLinks.find(l => l.id === currentDetailLinkId);
     } else {
         activeLink = customLinks[0];
     }

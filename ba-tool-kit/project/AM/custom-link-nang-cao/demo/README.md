@@ -38,14 +38,20 @@ Thư mục này chứa mã nguồn giao diện HTML/CSS/JavaScript độc lập 
     - Nếu link chưa cấu hình gói nào (0 gói / mới tạo): Vùng nội dung bên dưới để trống (chờ cập nhật cấu hình). Không hiển thị nội dung hay nút tùy biến thừa.
 
 ### 2.4 Màn hình Chỉnh sửa Link (FR03 — 2-Tab Form, Khóa URL đích & Khu vực 2 cấp)
-- Nhấn nút **"Chỉnh sửa"** tại Header Chi tiết link hoặc icon Bút chì tại bảng danh sách.
+- Nhấn nút **"Cấu hình SP/DV"** tại Header Chi tiết link hoặc icon Bút chì tại bảng danh sách.
 - Form mở ra và **tự động chuyển trực tiếp vào Tab "Chọn từ danh sách"** (Cấu hình SP/DV):
   - **Bộ chọn Khu vực 2 cấp (Location-first pattern giống pic2):** 
-    - Khung **KHU VỰC** hiển thị phía trên danh mục gói cước gồm 2 dropdown liên hoàn: **Tỉnh/Thành phố** và **Phường/Xã** (Phường/Xã tự động nạp theo Tỉnh/Thành đã chọn). Mặc định để trống (không chọn sẵn tỉnh).
-  - **Đổ toàn bộ gói theo ngành hàng của URL đích:** Nạp toàn bộ gói cước thuộc ngành hàng URL đích vào danh sách chọn (không chỉ giới hạn các gói mặc định trên web).
-  - **Badge cam nhẹ `mới` & Bộ đếm `X/3`:** Xuất hiện trong phiên sửa đầu tiên và tự động chuyển sang counter `X/3` khi chọn gói. Cho phép chọn tối đa 3 gói cước.
-  - **Giao diện thẻ gói cước đã chọn (chuẩn pic2):** Hiển thị card trắng bo góc có thumbnail, tên gói + thông số và icon Thùng rác 🗑️ để xóa nhanh.
+    - Khung **KHU VỰC** gồm 2 dropdown liên hoàn bắt buộc: **Tỉnh/Thành phố \*** và **Phường/Xã \*** (Phường/Xã tự động nạp theo Tỉnh/Thành đã chọn). Khi bấm "Lưu", nếu để trống Tỉnh/Thành hoặc Phường/Xã hệ thống sẽ báo lỗi và chặn lưu.
+    - **Quy tắc Reset khi đổi Tỉnh/Thành hoặc Phường/Xã:** Tự động xóa sạch danh sách gói đã chọn (không popup toast) để bảo đảm đúng đơn giá và chính sách khu vực mới.
+  - **Đổ toàn bộ gói theo ngành hàng của URL đích:** Nạp toàn bộ gói cước thuộc ngành hàng URL đích vào danh sách chọn.
+  - **Badge cam nhẹ `mới` & Bộ đếm `X/3`:** Xuất hiện trong phiên sửa đầu tiên (dựa trên cờ `hasBeenEdited: false`) và kết thúc vĩnh viễn sau khi lưu thành công lần đầu.
+  - **Giao diện thẻ gói cước đã chọn (chuẩn pic2) & Kéo thả FLIP Realtime:**
+    - Hiển thị card trắng bo góc có icon tay cầm kéo `:::`, thumbnail, tên gói + thông số và icon Thùng rác 🗑️.
+    - Kéo thả sắp xếp thứ tự ưu tiên với chuyển động trượt FLIP Realtime êm ái. Gói đầu tiên sẽ xuất hiện ưu tiên ở vị trí đầu trên Landing Page.
   - **Tab 1 — URL đích (Locked / Read-only):** Chuyển sang trạng thái **Read-only vĩnh viễn (nền xám, font monospace, icon Khóa 🔒)** để bảo vệ 100% định danh của Shortlink & QR Code đã phân phối ra thị trường.
 - **Bảo toàn Định danh & Hiển thị Landing Page Thực tế:**
-  - Nhấn "Lưu": Cập nhật dữ liệu mới nhưng **giữ nguyên vẹn 100% Shortlink và Mã QR Code** (Identity Stability).
-  - **Landing Page (Trang đích thực tế):** Giữ nguyên Banner, Header, Ưu đãi, FAQs của URL đích gốc; Thay thế vùng sản phẩm bằng đúng 1–3 gói đã chọn; **Hiển thị Tên Salesman tạo link ở góc trên bên phải trang**.
+  - Nhấn "Lưu": Cập nhật dữ liệu mới nhưng **giữ nguyên vẹn 100% Shortlink và Mã QR Code** (Identity Stability) và quay về Trang Danh sách.
+  - **Landing Page (Trang đích thực tế / Live Preview):** 
+    - Nếu đã cấu hình gói: Thay thế vùng sản phẩm bằng đúng 1–3 gói đã chọn theo đúng thứ tự ưu tiên.
+    - Nếu đã chọn khu vực nhưng chưa chọn gói nào (0 gói): Hiển thị trạng thái rỗng *"Không có sản phẩm dịch vụ khả dụng tại khu vực [Tên Tỉnh]"*.
+    - Hiển thị thông tin Tên Salesman tạo link ở góc trên bên phải trang.
