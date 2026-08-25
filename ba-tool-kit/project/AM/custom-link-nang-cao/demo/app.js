@@ -1044,7 +1044,68 @@ function removeSelectedProduct(prodId) {
     }
 }
 
-// Render các thẻ gói cước đã chọn chuẩn 100% Mockup pic2 kèm tính năng Kéo thả (Drag & Drop)
+// Helper: Xác định phần tử liền sau vị trí con trỏ chuột khi kéo
+function getDragAfterElement(container, y) {
+    const draggableElements = [...container.querySelectorAll('.configured-product-card-pic2:not(.dragging)')];
+
+    return draggableElements.reduce((closest, child) => {
+        const box = child.getBoundingClientRect();
+        const offset = y - box.top - box.height / 2;
+        if (offset < 0 && offset > closest.offset) {
+            return { offset: offset, element: child };
+        } else {
+            return closest;
+        }
+    }, { offset: Number.NEGATIVE_INFINITY }).element;
+}
+
+// FLIP Animation: Hiệu ứng chuyển động hoán đổi vị trí Realtime mượt mà
+function animateFLIP(container, mutationFn) {
+    const cards = [...container.querySelectorAll('.configured-product-card-pic2')];
+    const firstPositions = new Map();
+
+    cards.forEach(card => {
+        firstPositions.set(card, card.getBoundingClientRect().top);
+    });
+
+    mutationFn();
+
+    const updatedCards = [...container.querySelectorAll('.configured-product-card-pic2')];
+    updatedCards.forEach(card => {
+        const firstTop = firstPositions.get(card);
+        if (firstTop === undefined) return;
+        const lastTop = card.getBoundingClientRect().top;
+        const deltaY = firstTop - lastTop;
+
+        if (deltaY !== 0) {
+            card.style.transform = `translateY(${deltaY}px)`;
+            card.style.transition = 'none';
+
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    card.style.transition = 'transform 0.22s cubic-bezier(0.2, 0, 0, 1)';
+                    card.style.transform = '';
+                });
+            });
+        }
+    });
+}
+
+// Cập nhật số thứ tự (#1, #2, #3) realtime khi kéo thả
+function updatePackageOrderBadges() {
+    const container = document.getElementById("form-products-editor");
+    if (!container) return;
+    const cards = container.querySelectorAll(".configured-product-card-pic2");
+    cards.forEach((card, idx) => {
+        const badge = card.querySelector(".package-order-num");
+        if (badge) {
+            badge.innerText = `#${idx + 1}`;
+            badge.title = `Vị trí hiển thị #${idx + 1}`;
+        }
+    });
+}
+
+// Render các thẻ gói cước đã chọn chuẩn 100% Mockup pic2 kèm tính năng Kéo thả Realtime mượt mà
 function renderProductsEditor() {
     const container = document.getElementById("form-products-editor");
     if (!container) return;
@@ -1062,7 +1123,7 @@ function renderProductsEditor() {
         const card = document.createElement("div");
         card.className = "configured-product-card-pic2";
         card.draggable = true;
-        card.dataset.index = index;
+        card.dataset.id = pid;
 
         const priceDisplay = (locCode && prod.prices && prod.prices[locCode]) ? ` &bull; <strong style="color:#0284c7;">${prod.prices[locCode]}</strong>` : "";
         card.innerHTML = `
@@ -1076,7 +1137,7 @@ function renderProductsEditor() {
                     <circle cx="16" cy="19" r="2"/>
                 </svg>
             </div>
-            <span class="package-order-num" title="Vị trí hiển thị #${index + 1}">${index + 1}</span>
+            <span class="package-order-num" title="Vị trí hiển thị #${index + 1}">#${index + 1}</span>
             <img src="${prod.img}" alt="${prod.name}" class="configured-card-thumb-pic2">
             <div class="configured-card-info-pic2">
                 <div class="configured-card-name-pic2">${prod.name}</div>
@@ -1092,49 +1153,47 @@ function renderProductsEditor() {
             </button>
         `;
 
-        // Sự kiện Kéo Thả HTML5 Drag and Drop API
+        // Bắt đầu kéo
         card.addEventListener("dragstart", (e) => {
-            draggedCardIndex = index;
             card.classList.add("dragging");
             e.dataTransfer.effectAllowed = "move";
-            e.dataTransfer.setData("text/plain", index);
+            e.dataTransfer.setData("text/plain", pid);
         });
 
+        // Kết thúc kéo -> Đồng bộ thứ tự mới vào formDraftProductIds
         card.addEventListener("dragend", () => {
             card.classList.remove("dragging");
-            document.querySelectorAll(".configured-product-card-pic2").forEach(el => el.classList.remove("drag-over"));
-        });
-
-        card.addEventListener("dragover", (e) => {
-            e.preventDefault();
-            e.dataTransfer.dropEffect = "move";
-        });
-
-        card.addEventListener("dragenter", (e) => {
-            e.preventDefault();
-            if (draggedCardIndex !== null && draggedCardIndex !== index) {
-                card.classList.add("drag-over");
-            }
-        });
-
-        card.addEventListener("dragleave", () => {
-            card.classList.remove("drag-over");
-        });
-
-        card.addEventListener("drop", (e) => {
-            e.preventDefault();
-            card.classList.remove("drag-over");
-            if (draggedCardIndex !== null && draggedCardIndex !== index) {
-                const movedItem = formDraftProductIds.splice(draggedCardIndex, 1)[0];
-                formDraftProductIds.splice(index, 0, movedItem);
-                draggedCardIndex = null;
-                renderProductsEditor();
-                showToast(`Đã đổi vị trí gói cước sang vị trí #${index + 1}!`);
-            }
+            const newIds = Array.from(container.children).map(c => c.dataset.id).filter(Boolean);
+            formDraftProductIds = newIds;
+            updatePackageOrderBadges();
         });
 
         container.appendChild(card);
     });
+
+    // Lắng nghe di chuyển kéo thả trên container để hoán đổi Realtime mượt mà
+    container.ondragover = (e) => {
+        e.preventDefault();
+        const draggingCard = container.querySelector(".dragging");
+        if (!draggingCard) return;
+
+        const afterElement = getDragAfterElement(container, e.clientY);
+        if (afterElement == null) {
+            if (container.lastElementChild !== draggingCard) {
+                animateFLIP(container, () => {
+                    container.appendChild(draggingCard);
+                    updatePackageOrderBadges();
+                });
+            }
+        } else {
+            if (afterElement !== draggingCard && afterElement.previousElementSibling !== draggingCard) {
+                animateFLIP(container, () => {
+                    container.insertBefore(draggingCard, afterElement);
+                    updatePackageOrderBadges();
+                });
+            }
+        }
+    };
 }
 
 // Avatar controls

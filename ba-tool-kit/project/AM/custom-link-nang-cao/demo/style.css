@@ -3333,9 +3333,10 @@ body {
     border: 1px solid #e2e8f0;
     border-radius: 8px;
     margin-bottom: 8px;
-    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
     user-select: none;
     cursor: default;
+    will-change: transform;
 }
 
 .configured-product-card-pic2:hover {
@@ -3344,16 +3345,11 @@ body {
 }
 
 .configured-product-card-pic2.dragging {
-    opacity: 0.45;
+    opacity: 0.35;
     transform: scale(0.98);
     border: 2px dashed #0066cc;
     background: #f0f7ff;
-}
-
-.configured-product-card-pic2.drag-over {
-    border-top: 2.5px solid #0066cc;
-    transform: translateY(2px);
-    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.15);
+    box-shadow: 0 8px 24px rgba(0, 102, 204, 0.18);
 }
 
 .drag-handle-pic2 {
