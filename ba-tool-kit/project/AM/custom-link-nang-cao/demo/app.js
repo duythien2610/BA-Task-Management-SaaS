@@ -829,13 +829,8 @@ function handleProvinceChange() {
 
     populateWards(selectedLocationCode, "");
 
-    // QUY TẮC NGHIỆP VỤ: Khi thay đổi Tỉnh/Thành phố -> Xóa toàn bộ các gói cước đã chọn
-    const hadSelectedProducts = formDraftProductIds.length > 0;
+    // QUY TẮC NGHIỆP VỤ: Khi thay đổi Tỉnh/Thành phố -> Reset toàn bộ các gói cước đã chọn (không hiện toast)
     formDraftProductIds = [];
-
-    if (hadSelectedProducts) {
-        showToast("Đã làm mới danh sách gói cước khi thay đổi Tỉnh/Thành phố!");
-    }
 
     updateFormTabBadges();
     updateFormSelectTriggerText();
@@ -848,13 +843,8 @@ function handleWardChange() {
     if (!wardSelect) return;
     selectedWardCode = wardSelect.value;
 
-    // QUY TẮC NGHIỆP VỤ: Khi thay đổi Phường/Xã -> Xóa toàn bộ các gói cước đã chọn
-    const hadSelectedProducts = formDraftProductIds.length > 0;
+    // QUY TẮC NGHIỆP VỤ: Khi thay đổi Phường/Xã -> Reset toàn bộ các gói cước đã chọn (không hiện toast)
     formDraftProductIds = [];
-
-    if (hadSelectedProducts) {
-        showToast("Đã làm mới danh sách gói cước khi thay đổi Phường/Xã!");
-    }
 
     updateFormTabBadges();
     updateFormSelectTriggerText();
