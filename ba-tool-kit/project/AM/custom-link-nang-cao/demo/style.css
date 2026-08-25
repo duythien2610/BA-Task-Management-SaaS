@@ -3320,3 +3320,125 @@ body {
     margin-left: 6px;
     border: 1px solid #fee2e2;
 }
+
+/* ==========================================================================
+   Drag and Drop Package Cards in Editor (Pic2 Standard)
+   ========================================================================== */
+.configured-product-card-pic2 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    user-select: none;
+    cursor: default;
+}
+
+.configured-product-card-pic2:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.configured-product-card-pic2.dragging {
+    opacity: 0.45;
+    transform: scale(0.98);
+    border: 2px dashed #0066cc;
+    background: #f0f7ff;
+}
+
+.configured-product-card-pic2.drag-over {
+    border-top: 2.5px solid #0066cc;
+    transform: translateY(2px);
+    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.15);
+}
+
+.drag-handle-pic2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 32px;
+    color: #94a3b8;
+    cursor: grab;
+    border-radius: 4px;
+    transition: all 0.15s ease;
+    flex-shrink: 0;
+}
+
+.drag-handle-pic2:hover {
+    color: #0066cc;
+    background: #f1f5f9;
+}
+
+.drag-handle-pic2:active {
+    cursor: grabbing;
+}
+
+.package-order-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #e2e8f0;
+    color: #475569;
+    font-size: 11px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.configured-card-thumb-pic2 {
+    width: 44px;
+    height: 44px;
+    border-radius: 6px;
+    object-fit: cover;
+    border: 1px solid #e2e8f0;
+    flex-shrink: 0;
+}
+
+.configured-card-info-pic2 {
+    flex: 1;
+    min-width: 0;
+}
+
+.configured-card-name-pic2 {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.configured-card-meta-pic2 {
+    font-size: 12px;
+    color: #64748b;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.btn-trash-card-pic2 {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s ease;
+    flex-shrink: 0;
+}
+
+.btn-trash-card-pic2:hover {
+    color: #ef4444;
+    background: #fef2f2;
+}

@@ -308,6 +308,7 @@ let isEditMode = false;
 let editingLinkId = null;
 let currentDetailLinkId = null;
 let formDraftProductIds = [];
+let draggedCardIndex = null;
 let selectedLocationCode = ""; // Province code
 let selectedWardCode = ""; // Ward code
 let isFirstSessionNewBadge = false;
@@ -1043,7 +1044,7 @@ function removeSelectedProduct(prodId) {
     }
 }
 
-// Render các thẻ gói cước đã chọn chuẩn 100% Mockup pic2
+// Render các thẻ gói cước đã chọn chuẩn 100% Mockup pic2 kèm tính năng Kéo thả (Drag & Drop)
 function renderProductsEditor() {
     const container = document.getElementById("form-products-editor");
     if (!container) return;
@@ -1054,14 +1055,28 @@ function renderProductsEditor() {
         return; // Để trống sạch sẽ khi chưa chọn gói nào (chuẩn pic2)
     }
 
-    formDraftProductIds.forEach(pid => {
+    formDraftProductIds.forEach((pid, index) => {
         const prod = SYSTEM_PRODUCTS.find(p => p.id === pid);
         if (!prod) return;
 
         const card = document.createElement("div");
         card.className = "configured-product-card-pic2";
+        card.draggable = true;
+        card.dataset.index = index;
+
         const priceDisplay = (locCode && prod.prices && prod.prices[locCode]) ? ` &bull; <strong style="color:#0284c7;">${prod.prices[locCode]}</strong>` : "";
         card.innerHTML = `
+            <div class="drag-handle-pic2" title="Kéo thả để sắp xếp thứ tự hiển thị">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <circle cx="8" cy="5" r="2"/>
+                    <circle cx="8" cy="12" r="2"/>
+                    <circle cx="8" cy="19" r="2"/>
+                    <circle cx="16" cy="5" r="2"/>
+                    <circle cx="16" cy="12" r="2"/>
+                    <circle cx="16" cy="19" r="2"/>
+                </svg>
+            </div>
+            <span class="package-order-num" title="Vị trí hiển thị #${index + 1}">${index + 1}</span>
             <img src="${prod.img}" alt="${prod.name}" class="configured-card-thumb-pic2">
             <div class="configured-card-info-pic2">
                 <div class="configured-card-name-pic2">${prod.name}</div>
@@ -1076,6 +1091,48 @@ function renderProductsEditor() {
                 </svg>
             </button>
         `;
+
+        // Sự kiện Kéo Thả HTML5 Drag and Drop API
+        card.addEventListener("dragstart", (e) => {
+            draggedCardIndex = index;
+            card.classList.add("dragging");
+            e.dataTransfer.effectAllowed = "move";
+            e.dataTransfer.setData("text/plain", index);
+        });
+
+        card.addEventListener("dragend", () => {
+            card.classList.remove("dragging");
+            document.querySelectorAll(".configured-product-card-pic2").forEach(el => el.classList.remove("drag-over"));
+        });
+
+        card.addEventListener("dragover", (e) => {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = "move";
+        });
+
+        card.addEventListener("dragenter", (e) => {
+            e.preventDefault();
+            if (draggedCardIndex !== null && draggedCardIndex !== index) {
+                card.classList.add("drag-over");
+            }
+        });
+
+        card.addEventListener("dragleave", () => {
+            card.classList.remove("drag-over");
+        });
+
+        card.addEventListener("drop", (e) => {
+            e.preventDefault();
+            card.classList.remove("drag-over");
+            if (draggedCardIndex !== null && draggedCardIndex !== index) {
+                const movedItem = formDraftProductIds.splice(draggedCardIndex, 1)[0];
+                formDraftProductIds.splice(index, 0, movedItem);
+                draggedCardIndex = null;
+                renderProductsEditor();
+                showToast(`Đã đổi vị trí gói cước sang vị trí #${index + 1}!`);
+            }
+        });
+
         container.appendChild(card);
     });
 }
