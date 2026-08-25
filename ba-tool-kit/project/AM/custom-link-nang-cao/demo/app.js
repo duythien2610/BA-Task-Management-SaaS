@@ -1250,7 +1250,7 @@ function saveCustomLinkForm() {
         showToast("Cập nhật thông tin link thành công!");
         showListView();
     } else {
-        // TẠO LINK MỚI (URL-First)
+        // TẠO LINK MỚI (URL-First) -> Chuyển hướng trực tiếp qua trang Chi tiết link
         const newSlug = "fpt" + Math.random().toString(36).substring(2, 7);
         const newLink = {
             id: "link_" + Date.now(),
@@ -1270,7 +1270,7 @@ function saveCustomLinkForm() {
         };
         customLinks.unshift(newLink);
         showToast("Tạo link thành công!");
-        showListView();
+        openDetailView(newLink.id);
     }
 }
 
