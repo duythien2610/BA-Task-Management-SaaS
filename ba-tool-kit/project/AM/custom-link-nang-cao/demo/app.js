@@ -847,7 +847,19 @@ function handleWardChange() {
     const wardSelect = document.getElementById("select-ward");
     if (!wardSelect) return;
     selectedWardCode = wardSelect.value;
+
+    // QUY TẮC NGHIỆP VỤ: Khi thay đổi Phường/Xã -> Xóa toàn bộ các gói cước đã chọn
+    const hadSelectedProducts = formDraftProductIds.length > 0;
+    formDraftProductIds = [];
+
+    if (hadSelectedProducts) {
+        showToast("Đã làm mới danh sách gói cước khi thay đổi Phường/Xã!");
+    }
+
+    updateFormTabBadges();
     updateFormSelectTriggerText();
+    renderProductsEditor();
+    filterFormDropdown();
 }
 
 function populateWards(provinceCode, selectedWard) {
